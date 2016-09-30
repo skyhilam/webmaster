@@ -23,27 +23,29 @@
 
     </head>
     <body>
-		@include('admin.header')
+        @include('admin.header')
 
         <div class="row expanded">
             <div class="columns medium-2">
                 <ul class="menu vertical" >
                     <li><a href="/">{{trans('layout.home')}}</a></li>
                     <li><a href="{{ url('/setting') }}">{{trans('layout.setting')}}</a></li>
-                    @if(session()->get('statut') != 'user' )
-                    <li><a href="{{ url('/posts') }}">{{trans('layout.posts')}}</a></li>
-                    @endif
+                    
                     @if(session()->get('statut') == 'admin' || session()->get('statut') == 'super')
                     <li><a href="{{ url('/members') }}">{{trans('layout.members')}}</a></li>
 
                     <li><a href="{{ url('/messages/inbox') }}">{{trans('layout.messages')}}</a></li>
+                    @endif
+                    @if(session()->get('statut') != 'user' )
+                    <li><a href="{{ url('/posts') }}">{{trans('layout.posts')}}</a></li>
+                    <li><a href="{{ url('/post/types') }}">{{trans('layout.post_types')}}</a></li>
                     <li><a href="{{ url('/analytics') }}">{{trans('layout.analytics')}}</a></li>
-
                     @endif
                     @if(session()->get('statut') == 'super')
                     <li><a href="{{ url('/wiki') }}">Wiki</a></li>
                     <li><a href="{{ url('/problems') }}">Problems</a></li>
                     <li><a href="{{ url('/constructor') }}">Constructor</a></li>  
+                    <li><a href="{{ url('/jobs') }}">Jobs</a></li>  
                     @endif
                 </ul>
             </div>
@@ -54,7 +56,7 @@
         
        
 
-		@include('admin.footer')
+        @include('admin.footer')
         
         <script src="{{ asset('/js/app.js') }}"></script>
         

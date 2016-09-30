@@ -28,24 +28,33 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::group(['prefix' => '/setting', 'namespace' => 'Admin'], function() {
 		Route::get('/', 'SettingController@showSetting');
 
-		Route::get('/name/{name}', 'SettingController@showSettingName');
-		Route::patch('/name', 'SettingController@changeName');
-
-		Route::get('/password', 'SettingController@showSettingPassword');
-		Route::patch('/password', 'SettingController@changePassword');
+		Route::get('{param}', 'SettingController@showEditForm');
+		Route::patch('{param}', 'SettingController@save');
 	});
 
 });
 
 // for admin and redac
 Route::group(['namespace' => 'Admin', 'middleware' => ['auth', 'redac']], function() {
+	// posts
 	Route::get('/posts', 'PostController@get');
-	Route::get('/post/create', 'CreateNewPostController@get');
-	Route::post('/post/create', 'CreateNewPostController@post');
+	Route::get('/post/create', 'PostController@showCreateForm');
+	Route::post('/post/create', 'PostController@create');
+	Route::get('/post/info/{id}', 'PostController@showInfo');
 
-	Route::get('/post/details/{id}', 'PostDetailsController@get');
-	Route::post('/post/details/{id}', 'PostDetailsController@post');
-	Route::delete('/post/details/{id}', 'PostDetailsController@delete');
+	Route::get('/post/edit/{id}/{param}', 'PostController@showEditForm');
+	Route::patch('/post/edit/{id}/{param}', 'PostController@edit');
+
+	// post types
+	Route::get('/post/types', 'TypesController@index');
+	Route::get('/post/type/create', 'TypesController@showCreateForm');
+	Route::post('/post/type/create', 'TypesController@create');
+	Route::get('/post/type/edit/{id}/{param}', 'TypesController@showEditForm');
+	Route::patch('/post/type/edit/{id}/{param}', 'TypesController@edit');
+	Route::delete('/post/type/edit/{id}/{param}', 'TypesController@delete');
+
+	// analytics
+	Route::get('/analytics', 'AnalyticsController@get');
 });
 
 // for admin
@@ -53,13 +62,14 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['admin', 'auth']], functi
 	Route::get('/wiki', function() {return view('admin.wiki');});
 	Route::get('/problems', function() {return view('admin.problems');});
 	ROute::get('/constructor', function() {return view('admin.constructor');});
+	ROute::get('/jobs', function() {return view('admin.jobs');});
 
 
 
 
 	Route::get('/messages/inbox', 'MessageController@get');
 
-	Route::get('/analytics', 'AnalyticsController@get');
+	
 
 	Route::get('/roles', 'RoleController@get');
 

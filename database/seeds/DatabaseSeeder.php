@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use App\Models\Role, App\Models\User;
+use App\Models\Role, App\Models\User, App\MOdels\PostType;
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,6 +19,11 @@ class DatabaseSeeder extends Seeder
         Role::create(['title' => 'Redactor', 'slug' => 'redac']);
         Role::create(['title' => 'User', 'slug' => 'user']);
 
+        PostType::insert([
+            ['title' => '體育'],
+            ['title' => '新聞'],
+            ['title' => '娛樂'],
+        ]);
 
         User::create(['name' => 'super', 'email' => 'super@iclover.net', 'password' => bcrypt('asdfasdf'), 'role_id' => 1, 'public_id' => str_random(8)]);
 

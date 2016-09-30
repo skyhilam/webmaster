@@ -16,4 +16,3 @@
   * set MAIL_PASSWORD
 * php artisan migrate --seed
 * optionaly type npm install to manage assets
-* for test

@@ -65,3 +65,27 @@ Breadcrumbs::register('setting/password', function($breadcrumbs)
     $breadcrumbs->push(trans('layout.password'));
 });
 
+// Types
+Breadcrumbs::register('post/types', function($breadcrumbs)
+{
+	$breadcrumbs->push(trans('layout.post_types'), url('/post/types'));
+});
+
+// Type > edit
+Breadcrumbs::register('post/type/edit', function($breadcrumbs)
+{
+	$breadcrumbs->parent('post/types');
+    $breadcrumbs->push(trans('layout.'. request()->param));
+});
+
+// Type > create
+Breadcrumbs::register('post/type/create', function($breadcrumbs)
+{
+	$breadcrumbs->parent('post/types');
+    $breadcrumbs->push(trans('layout.create'));
+});
+
+
+
+
+

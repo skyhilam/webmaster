@@ -1,6 +1,6 @@
 <?php 
 return [
-	/*
+    /*
     |--------------------------------------------------------------------------
     | Layout Language Lines
     |--------------------------------------------------------------------------
@@ -10,6 +10,9 @@ return [
     | 
     |
     */
+    // default
+    'all'       => '全部',
+    'search'    => '搜尋',
 
     // auth
     'login'                         => '登入',
@@ -29,14 +32,21 @@ return [
     'home'          => '首頁',
     'profile'       => '個人設定',
     'posts'         => '文章',
-   	'members'       => '會員',
-   	'messages'      => '訊息',
-   	'analytics'     => '統計',
-   	'browse'        => '瀏覽',
+    'post_types'    => '文章類型',
+    'members'       => '會員',
+    'messages'      => '訊息',
+    'analytics'     => '統計',
+    'browse'        => '瀏覽',
     'setting'       => '設定',
 
 
     // setting
+    'title'                 => '主題',
+    'content'               => '內容',
+    'type'                  => '類型',
+    'types'                  => '類型',
+    'image'                 => '圖片',
+    'images'                => '圖片',
     'save'                  => '儲存',
     'info'                  => '查看',
     'edit'                  => '更改',
@@ -60,6 +70,7 @@ return [
 
 
     // member
+    'create'            => '新增',
     'create_new'            => '新增',
     'create_new_member'     => '新增會員',
     'created_at'            => '創建日期',
@@ -68,6 +79,11 @@ return [
 
     // confirm
     'confirm_delete'        => '確定要刪除？',
+
+    // default
+    'default_image'         => '預設圖片',
+
+    'delete_images'         => '刪除圖片',
 ];
 
 
