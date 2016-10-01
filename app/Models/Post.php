@@ -3,11 +3,20 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Post extends Model
 {
 	protected $table = 'posts';
 
+    use SearchableTrait;
+
+    protected $searchable = [
+        'columns' => [
+            'content'           => 10,
+            'title'             => 1,
+        ]
+    ];
 
 	/**
      * The attributes that are mass assignable.
@@ -15,7 +24,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'content', 'default_image_id'
+        'title', 'content', 'default_image_id', 'type_id'
     ];
 
 
@@ -28,5 +37,10 @@ class Post extends Model
     public function image()
     {
         return $this->hasOne('\App\Models\Image', 'id', 'default_image_id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo('\App\Models\PostType');
     }
 }

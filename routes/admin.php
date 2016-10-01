@@ -41,6 +41,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth', 'redac']], functi
 	Route::get('/post/create', 'PostController@showCreateForm');
 	Route::post('/post/create', 'PostController@create');
 	Route::get('/post/info/{id}', 'PostController@showInfo');
+	Route::delete('/post/info/{id}', 'PostController@delete');
 
 	Route::get('/post/edit/{id}/{param}', 'PostController@showEditForm');
 	Route::patch('/post/edit/{id}/{param}', 'PostController@edit');

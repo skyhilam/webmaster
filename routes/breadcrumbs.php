@@ -86,6 +86,39 @@ Breadcrumbs::register('post/type/create', function($breadcrumbs)
 });
 
 
+// Posts
+Breadcrumbs::register('posts', function($breadcrumbs)
+{
+	$breadcrumbs->push(trans('layout.posts'), url('/posts'));
+});
 
+// Posts > create
+Breadcrumbs::register('post/create', function($breadcrumbs)
+{
+	$breadcrumbs->parent('posts');
+    $breadcrumbs->push(trans('layout.create'));
+});
+
+// Posts > details
+Breadcrumbs::register('post/details', function($breadcrumbs)
+{
+	$breadcrumbs->parent('posts');
+	$breadcrumbs->push(trans('layout.edit'));
+});
+
+
+// Posts > info
+Breadcrumbs::register('post/info', function($breadcrumbs)
+{
+	$breadcrumbs->parent('posts');
+	$breadcrumbs->push(trans('layout.info'), url('/post/info/'. request()->id));
+});
+
+// Posts > id > title
+Breadcrumbs::register('post/edit', function($breadcrumbs)
+{
+	$breadcrumbs->parent('post/info');
+	$breadcrumbs->push(trans("layout.". request()->param));
+});
 
 

@@ -45,3 +45,10 @@ if (!function_exists('formatDate')) {
         return \Carbon\Carbon::parse($date)->format(config('app.locale') != 'en' ? 'd/m/Y H:i:s' : 'm/d/Y H:i:s');
     }
 }
+if (!function_exists('clImage')) {
+    function clImage($name, $style = '')
+    {
+        $style = $style? $style.'/': '';
+        return config('cloudder.baseUrl'). '/image/upload/'. $style. config('cloudder.version').'/'. $name;
+    }
+}

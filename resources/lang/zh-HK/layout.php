@@ -44,7 +44,7 @@ return [
     'title'                 => '主題',
     'content'               => '內容',
     'type'                  => '類型',
-    'types'                  => '類型',
+    'types'                 => '類型',
     'image'                 => '圖片',
     'images'                => '圖片',
     'save'                  => '儲存',
