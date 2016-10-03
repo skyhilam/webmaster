@@ -11,33 +11,41 @@ return [
     |
     */
     // default
+    'webmaster' => '後台管理系統',
     'all'       => '全部',
     'search'    => '搜尋',
 
     // auth
-    'login'                         => '登入',
-    'logout'                        => '登出',
-    'forgot_password'               => '忘記密碼？',
-    'address'                       => '地址',
-    'tel'                           => '電話',
-    'email'                         => '電郵',
-    'password'                      => '密碼',
-    'confirm_password'              => '確認密碼',
-    'remember'                      => '保持登入狀態',
-    'enter_email_address'           => '輸入電郵地址',
-    'send_reset_password_link'      => '發重設密碼連結',
+    'login'                                     => '登入',
+    'logout'                                    => '登出',
+    'send'                                      => '送出',
+    'forgot_password'                           => '忘記密碼',
+    'address'                                   => '地址',
+    'tel'                                       => '電話',
+    'email'                                     => '郵箱',
+    'password'                                  => '密碼',
+    'confirm_password'                          => '確認密碼',
+    'reset_password'                            => '重設密碼',
+    'remember'                                  => '保持登入狀態',
+    'enter_email_address'                       => '輸入電郵地址',
+    'send_reset_password_link'                  => '發重設密碼連結',
+    'create_project'                            => '新增項目',
+    'upload_image'                              => '圖片上傳',
+    'enter_new_password'                        => '請輸入新密碼',
+    'enter_new_password_confirmation'           => '請再輸入新密碼',
 
 
     // navigation
-    'home'          => '首頁',
+    'home'          => '概覽',
     'profile'       => '個人設定',
     'posts'         => '文章',
     'post_types'    => '文章類型',
-    'members'       => '會員',
-    'messages'      => '訊息',
-    'analytics'     => '統計',
+    'members'       => '網站會員',
+    'messages'      => '訊息收件',
+    'analytics'     => '數據統計',
     'browse'        => '瀏覽',
-    'setting'       => '設定',
+    'setting'       => '帳戶設定',
+    'support'       => '故障及回報',
 
 
     // setting
@@ -49,7 +57,7 @@ return [
     'images'                => '圖片',
     'save'                  => '儲存',
     'info'                  => '查看',
-    'edit'                  => '更改',
+    'edit'                  => '修改',
     'delete'                => '刪除',
     'back'                  => '返回',
     'cancel'                => '取消',
@@ -72,7 +80,7 @@ return [
     // member
     'create'            => '新增',
     'create_new'            => '新增',
-    'create_new_member'     => '新增會員',
+    'create_member'     => '新增會員',
     'created_at'            => '創建日期',
     'personal'              => '個人資料',
 
@@ -84,6 +92,19 @@ return [
     'default_image'         => '預設圖片',
 
     'delete_images'         => '刪除圖片',
+
+
+    // Analytic
+    'analytic_day'            => '本日',
+    'analytic_week'           => '最近 7 天',
+    'analytic_month'          => '最近 30 天',
+    'analytic_sessions'       => '工作階段次數',
+    'analytic_pageviews'      => '瀏覽次數',
+    'analytic_users'          => '使用者人數',
+
+    'analytics_compare_day'         => '與昨天前比較',
+    'analytics_compare_week'        => '與上 7 天前比較',
+    'analytics_compare_month'       => '與上 30 天前比較',
 ];
 
 

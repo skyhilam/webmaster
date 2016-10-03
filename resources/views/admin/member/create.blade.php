@@ -2,57 +2,64 @@
 
 
 @section('content')
-<br>
-<div class="row ">
-	<div class="columns medium-8 medium-centered">
-		@include('admin.breadcrumbs.entete', ['title' => trans('layout.create_new_member'), 'render' => 'member/create'])
-		<form action="{{request()->url()}}" method="post">
 
-			{{csrf_field()}}
-			<div>
-				<label for="role">{{trans('layout.role')}}</label>
+@push('console_content')
+{!! Breadcrumbs::render('member/create') !!}
+
+<form action="{{request()->url()}}" method="post">
+	{{csrf_field()}}
+	<table class="box">
+		<tr>
+			<td class="text-center" width="150"><label for="role">{{trans('layout.role')}}</label></td>
+			<td>
 				<select name="role" id="role">
 					@foreach($roles as $role)
 					<option value="{{$role->id}}">{{$role->title}}</option>
 					@endforeach
 				</select>
-			</div>
-			<div>
-				<label for="name">{{trans('layout.name')}}</label>
+				@if($errors->has('role'))<span class="form-error is-visible">* {{$errors->first('role')}}</span>@endif
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center"><label for="name">{{trans('layout.name')}}</label></td>
+			<td>
 				<input type="text" name="name" id="name" value="{{old('name')}}">
-			</div>
-
-			<div>
-				<label for="email">{{trans('layout.email')}}</label>
+				@if($errors->has('name'))<span class="form-error is-visible">* {{$errors->first('name')}}</span>@endif
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center"><label for="email">{{trans('layout.email')}}</label></td>
+			<td>
 				<input type="email" name="email" id="email" value="{{old('email')}}">
-			</div>
-
-			<div>
-				<label for="password">{{trans('layout.password')}}</label>
+				@if($errors->has('email'))<span class="form-error is-visible">* {{$errors->first('email')}}</span>@endif
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center"><label for="password">{{trans('layout.password')}}</label></td>
+			<td>
 				<input type="password" name="password" id="password">
-			</div>
-
-			<div>
-				<label for="password-confirmed">{{trans('layout.confirm_password')}}</label>
+				@if($errors->has('password'))<span class="form-error is-visible">* {{$errors->first('password')}}</span>@endif
+			</td>
+		</tr>
+		<tr>
+			<td class="text-center"><label for="password-confirmed">{{trans('layout.confirm_password')}}</label></td>
+			<td>
 				<input type="password" name="password_confirmation" id="password-confirmed">
-			</div>
-
-			<div>
-				<button class="button expanded" type="submit">{{trans('layout.create_new')}}</button>
-			</div>
-		</form>
-
-		@if (count($errors) > 0)
-		    <div class="alert callout">
-		        <ul>
-		            @foreach ($errors->all() as $error)
-		                <li>{{ $error }}</li>
-		            @endforeach
-		        </ul>
-		    </div>
-		@endif
+			</td>
+		</tr>
+	</table>
+	<br>
+	<div class="text-center">
+		<button class="button box" type="submit">{{trans('layout.create_member')}}</button>
 	</div>
-</div>
+
+</form>
+
+
+@endpush
+@include('admin.console_container')
+
+
 
 
 @endsection

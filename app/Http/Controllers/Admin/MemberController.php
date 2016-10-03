@@ -14,60 +14,66 @@ class MemberController extends Controller
 {
 	use CreateAndEditMember;
 
-	protected $mem_rep, $role_rep;
+	protected $members, $roles;
 
-	public function __construct(MemberRepository $mem_rep, RoleRepository $role_rep)
+	public function __construct(MemberRepository $members, RoleRepository $roles)
 	{
-		$this->mem_rep = $mem_rep;
-		$this->role_rep = $role_rep;
+		$this->members = $members;
+		$this->roles = $roles;
 	}
 
-	public function get(Request $request)
+	public function index(Request $request)
 	{
 		$role = $request->input('role', 'total');
 
-		$users = $this->mem_rep->indexs(12, $role);
-		$roles = $this->role_rep->get();
+		$users = $this->members->indexs(11, $role);
+		$roles = $this->roles->all();
+
 		return view('admin.member.index', compact('users', 'roles', 'role'));
 	}
 
 
+    public function showCreateForm()
+    {
+        $roles = $this->roles->all();
+        return view('admin.member.create', compact('roles'));
+    }
+
+    public function createMember(Request $request)
+    {
+        $this->validator($request->all())->validate();
+        $this->create($request->all());
+        return redirect('/members')->with('status', trans('member.created'));
+    }
+
+
     public function showInfo($id)
     {  
-        $user = $this->mem_rep->getByPublicId($id);
+        $user = $this->members->getByPublicId($id);
         return view('admin.member.info', compact('user'));
     }
 
-    public function showEditNameForm($id)
+
+    public function showEditForm($param, $id)
     {
-        $user = $this->mem_rep->getByPublicId($id);
-        return view('admin.member.name', compact('user'));
+        $user = $this->members->getByPublicId($id);
+        $roles = $this->roles->all();
+        return view('admin.member.edit', compact('param', 'user', 'roles'));
     }
 
-    public function showEditRoleForm($id)
-    {
-        $user = $this->mem_rep->getByPublicId($id);
-        $roles = $this->role_rep->get();
-        return view('admin.member.role', compact('user', 'roles'));
-    }
 
-    public function showEditPasswordForm($id)
-    {
-        $user = $this->mem_rep->getByPublicId($id);
-        return view('admin.member.password', compact('user'));
-    }
-
-    public function changeParam($param, $id, Request $request)
+    public function edit(Request $request, $param, $id) 
     {
         $rules = $this->getRules($param);
         $this->validate($request, $rules);
 
         $data = $this->formatUpdateData($param, $request->all());
 
-        $this->mem_rep->updateByPublicId($id, $data);
+        $this->members->updateByPublicId($id, $data);
 
-        return redirect()->back()->with('status', trans('setting.'.$param));
+        return redirect('/member/info/'. $id)->with('status', trans('setting.'.$param));
     }
+
 
     protected function formatUpdateData($param, array $data)
     {
@@ -138,28 +144,5 @@ class MemberController extends Controller
     }
 
 
-    protected function rules($mode)
-    {
-        switch ($mode) {
-            case 'info':
-                return [
-                    'name' => 'required|max:255',
-                    'role' => 'required|exists:roles,id',
-                ];
-                break;
-            case 'password':
-                return [
-                    'password' => 'required|min:6|confirmed',
-                ];
-                break;
-            default:
-                return [
-                    'name' => 'required|max:255',
-                    'email' => 'required|email|max:255|unique:users',
-                    'role' => 'required|exists:roles,id',
-                    'password' => 'required|min:6|confirmed',
-                ];
-                break;
-        }
-    }
+    
 }

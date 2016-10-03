@@ -9,18 +9,17 @@ use Illuminate\Http\Request;
 
 class AnalyticsController extends Controller
 {
-	protected $alt_rep;
+	protected $analytics;
 
-	public function __construct(AnalyticsRepository $alt_rep)
+	public function __construct(AnalyticsRepository $analytics)
 	{
-		$this->alt_rep = $alt_rep;
+		$this->analytics = $analytics;
 	}
 
 	public function get(Request $request)
 	{
-		$days = $request->input('days', 0);
-		$summary = $this->alt_rep->fetchUsersAndPageviews(Period::days($days));
+		$summary = $this->analytics->get();
 
-		return view('admin.analytics.index', compact('summary', 'days'));
+		return view('admin.analytics.index', compact('summary'));
 	}
 }

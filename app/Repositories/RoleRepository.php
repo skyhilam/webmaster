@@ -11,9 +11,11 @@ class RoleRepository extends Repository
 		$this->model = $role;
 	}
 
-	public function get()
+	public function all()
 	{
 		$role_id = Statut::getRoleId();
 		return $this->model->where('id','>=', $role_id)->oldest('id')->get();
 	}
+
+
 }

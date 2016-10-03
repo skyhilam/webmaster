@@ -5,22 +5,16 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/2.4.0/github-markdown.min.css">
 
-<style>
-	.markdown-body {
-        box-sizing: border-box;
-        min-width: 200px;
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 45px;
-    }
-</style>
 
 @endsection
 
 
 @section('content')
 
-<article class="markdown-body">
+@push('console_content')
+
+
+<article class="markdown-body box-container box">
 
 @markdown
 # 用極簡單去思考和實現
@@ -28,16 +22,23 @@
 **不要心急賺錢，先規劃後實現！**
 
 ## 項目開發
-1. message multiple send function
-2. message email style
-
+* message multiple send function
+* message email style
+* design
+	* post ✔︎
+	* home
+	* members ✔︎
+	* setting ✔︎
+	* analytics ✔︎
 
 @endmarkdown
 
     
 
-
+<br><br>
 </article>
+@endpush
+@include('admin.console_container')
 
 
 @endsection

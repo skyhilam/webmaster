@@ -1,45 +1,59 @@
 @extends('layouts.login')
 
 @section('content')
-<br><br><br><br>
-<div class="row">
-	<div class="column medium-4 medium-centered">
-		<div class="callout">
-			<h1>{{trans('layout.login')}}</h1>
+<div class="flex-center">
+	<section class="box">
+		
+		<div class="box-header">
+
+			<h3 class="text-center">
+				{{config('app.name')}} <br>
+				{{trans('layout.webmaster')}}
+			</h3>
+
+		</div>
+
+		<div class="box-container">
+			
 			<form action="{{url('/login')}}" method="post">
 				{{csrf_field()}}
 				<div>
-					<label for="email"><b>{{trans('layout.email')}}</b></label>
+					<label for="email" class="text-center purple">{{trans('layout.email')}}</label>
 					<input type="email" name="email" id="email" autofocus="" value="{{old('email')}}">
+					@if($errors->has('email'))
+					<span class="form-error is-visible">* {{$errors->first('email')}}</span>
+					@endif
 				</div>
+
 				<div>
-					<label for="password"><b>{{trans('layout.password')}}</b></label>
+					<label for="password" class="text-center purple">{{trans('layout.password')}}</label>
 					<input type="password" name="password" id="password">
+					@if($errors->has('password'))
+					<span class="form-error is-visible">* {{$errors->first('password')}}</span>
+					@endif
 				</div>
+
 				<div>
-					<label >
+					<label class="text-center">
 						<input type="checkbox" name="remember">
 						{{trans('layout.remember')}}
 					</label>
 				</div>
-				<div>
-					<button type="submit" class="button expanded">{{trans('layout.login')}}</button>
+				<div class="text-center">
+					<br>
+					<button type="submit" class="button">{{trans('layout.login')}}</button> 
+					<br><br>
 					<a href="{{url('/password/forgot')}}">{{trans('layout.forgot_password')}}</a>
 				</div>
+				
 			</form>
+			
 		</div>
-		<br>
-		@if (count($errors) > 0)
-		    <div class="alert callout">
-		        <ul>
-		            @foreach ($errors->all() as $error)
-		                <li>{{ $error }}</li>
-		            @endforeach
-		        </ul>
-		    </div>
-		@endif
-	</div>
+			
+	</section>
 </div>
+
+
 
 
 @endsection

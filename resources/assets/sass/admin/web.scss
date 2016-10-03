@@ -1,0 +1,258 @@
+
+body {
+	font-size: 14px;
+}
+
+// log in form
+.flex-center
+{
+	display: flex;
+	position: relative;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	section
+	{
+		width: 100%;
+		max-width: rem-calc(400);
+	}
+}
+
+
+
+.box 
+{
+	box-shadow: 5px 5px 20px rgba(0,0,0,.15);
+}
+.box-header
+{
+	background-color: $dark-gray;
+	color: $white;
+	padding: rem-calc(20) 0;
+	h3 {
+		margin: 0;
+		line-height: rem-calc(48);
+	}
+}
+.box-container
+{
+	background-color: $white;
+	padding: rem-calc(40);
+	padding-bottom: rem-calc(10);
+}
+.purple
+{
+	color: map-get($foundation-palette, primary);
+}
+.body-color, .body-color:hover
+{
+	color: $body-font-color;
+}
+.up
+{
+	color: #0bb495;
+}
+
+.down
+{
+	color: #d5352f;
+}
+
+// console navigation
+.console-nav 
+{
+	position: absolute;
+	height: 100%;
+	background-color: $dark-gray;
+	color: $white;
+	li:not(.console-header) 
+	{
+		a:not(.logout) 
+		{
+			color: $white;
+		}
+	}
+	li:last-child
+	{
+		background-color: map-get($foundation-palette, primary);
+		position: absolute;
+		width: 100%;
+		bottom: 0;
+	}
+	li.divide
+	{
+		background-color: $medium-gray;
+		height: 1px;
+	}
+	li:not(.console-header, .divide, .profile)
+	{
+		&:hover, &.active {
+			background-color: map-get($foundation-palette, primary);
+		}
+	}
+	img.icon 
+	{
+		height: 24px;
+	}
+}
+.console-header
+{
+	padding: rem-calc(5);
+}
+
+.profile
+{
+	background-color: $white;
+	color: map-get($foundation-palette, primary);
+	line-height: 1;
+	padding: 20px 20px;
+	a.logout
+	{
+		padding: 0.143em 1em;
+		display: block;
+		background-color: $medium-gray;
+		border-radius: 50px;
+	}
+}
+
+.profile-small-icon
+{
+	width: 64px;
+	height: 64px;
+	margin-bottom: 10px;
+	img {
+		width: 100%;
+		height: 100%;
+		border: 2px solid $medium-gray;
+		border-radius: 50%;
+	}
+
+}
+
+.profile-small-info
+{
+	padding-top: 20px;
+}
+
+
+// 2. Console Section
+.console-section
+{
+	padding: 10px;
+}
+
+// 3. Search Bar
+.search-bar
+{
+	max-width: rem-calc(300);
+	width: rem-calc(30);
+	height: rem-calc(30);
+	margin-top: rem-calc(4);
+	margin-right: rem-calc(15);
+	overflow: hidden;
+	border-radius: 50%;
+	background-color: $medium-gray;
+}
+
+.no-new
+{
+	color: $medium-gray;
+}
+
+.medium-editor-element
+{
+	height: rem-calc(300);
+
+	overflow: scroll;
+	overflow-x: hidden;
+	color: $black;
+	font-size: $input-font-size;
+	&.large
+	{
+		height: rem-calc(500);
+	}
+	&, &:hover, &:focus
+	{
+		border: none;
+		box-shadow: none;
+		outline: none;
+	}
+	* {	
+		margin: 0;
+	}
+}
+
+
+table
+{
+	input[type="text"], input[type="password"], input[type="email"], select, .medium-editor-element
+	{
+		&:hover, &, &:focus
+		{
+			border: none;
+			box-shadow: none;
+			outline: none;
+			margin: 0;
+		}
+	}
+	input[type="text"], input[type="password"], input[type="email"], .medium-editor-element
+	{
+		&, &:hover, &:focus
+		{
+			background: inherit;
+		}
+	}
+	td
+	{
+		vertical-align: top;
+	}
+	label 
+	{
+		padding: 0.5rem;		
+	}
+}
+.input-field
+{
+	padding: 0.5rem;
+}
+
+
+// 4. Board
+.board
+{
+	position: relative;
+	height: rem-calc(268);
+	background-color: $light-gray;
+}
+
+.board-picture
+{
+	height: rem-calc(188);
+	overflow: hidden;
+}
+
+.board-content
+{
+	position: absolute;
+	width: 100%;
+	height: rem-calc(80);
+	bottom: 0;
+	background-color: $light-gray;
+	padding: rem-calc(10);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

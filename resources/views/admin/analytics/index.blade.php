@@ -2,41 +2,51 @@
 
 
 @section('content')
-<br>
-<div class="row">
-	<div class="column">
-		<form action="{{url('/analytics')}}" method="get" >
-			<select name="days" id="date-range">
-				<option value="0" {{$days == 0? 'selected': ''}}>Today</option>
-				<option value="7" {{$days == 7? 'selected': ''}}>Last 7 days</option>
-				<option value="30" {{$days == 30? 'selected': ''}}>Last 30 days</option>
-				<option value="365" {{$days == 365? 'selected': ''}}>Last 365 days</option>
-			</select>
-		</form>
+
+
+<div class="row ">
+	<div class="columns">
+		<div class="console-section">
+		
+			
+			<div class="row">
+				<div class="columns">
+					{!! Breadcrumbs::render('analytics') !!}
+				</div>
+			</div>
+
+
+			
+			<div class="row medium-up-3">
+				@foreach($summary as $key => $item)
+				@foreach($item as $subkey =>$subitem)
+				<div class="column">
+					<div class="text-center box box-container">
+						<p>{{trans('layout.analytic_'. $subkey)}}{{trans('layout.analytic_'. $key)}}</p>
+						<h1 class="purple">{{$subitem['past']}}</h1>
+						@if($subitem['grow'] > 0)
+						<p><span class="up">▴ {{ $subitem['grow'] }}% </span>{{trans('layout.analytics_compare_'. $subkey)}}</p>
+						@else
+						<p><span class="down">▾ {{ $subitem['grow'] }}% </span>{{trans('layout.analytics_compare_'. $subkey)}}</p>
+						@endif
+					</div>
+					<br><br>
+				</div>
+				@endforeach
+				@endforeach
+			</div>
+
+
+
+
+
+
+		</div>
 	</div>
 </div>
-<div class="row medium-up-3">
-	<div class="column">
-		<div class="callout">
-			<h4>工作階段</h4>
-			<h5><b>{{$summary[0]['sessions']}}</b></h5>
-		</div>
-	</div>
 
-	<div class="column">
-		<div class="callout">
-			<h4>使用者</h4>
-			<h5><b>{{$summary[0]['users']}}</b></h5>
-		</div>
-	</div>
 
-	<div class="column">
-		<div class="callout">
-			<h4>瀏覽量</h4>
-			<h5><b>{{$summary[0]['browser']}}</b></h5>
-		</div>
-	</div>
-</div>
+
 
 @endsection
 

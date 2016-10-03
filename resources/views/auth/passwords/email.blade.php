@@ -2,46 +2,49 @@
 
 
 @section('content')
-<br>
-<br>
-<br>
-<br>
-<div class="row">
-	<div class="column medium-4 medium-centered">
-		<div class="callout">
-			<form action="{{url('/password/forgot')}}" method="post">
 
+<div class="flex-center">
+	<section class="box">
+		
+		<div class="box-header">
+
+			<h3 class="text-center">
+				{{trans('layout.forgot_password')}}
+			</h3>
+
+		</div>
+
+		<div class="box-container">
+			@if (session('status'))
+			<br>
+			<br>
+			<p class="text-center purple"><span class="icon-mail"></span><br>{{ session('status') }}</p>
+			<br><br>
+		    @else
+			<form action="{{url('/password/forgot')}}" method="post">
 				{{csrf_field()}}
 
 				<div>
-					<label for="email"><b>{{trans('layout.email')}}</b></label>
-					<input type="email" name="email" id="email" placeholder="{{trans('layout.enter_email_address')}}" autofocus="">
+					<label for="email" class="text-center purple">{{trans('layout.email')}}</label>
+					<input type="email" name="email" id="email" autofocus="">
+					@if($errors->has('email'))
+					<span class="form-error is-visible">* {{$errors->first('email')}}</span>
+					@endif
 				</div>
 
-				<div>
-					<button type="submit" class="button expanded">{{trans('layout.send_reset_password_link')}}</button>
+				<div class="text-center">
+					<br>
+					<button type="submit" class="button">{{trans('layout.send')}}</button> <br>
 				</div>
+				
 			</form>
+			
+			@endif
 		</div>
-
-		@if (count($errors) > 0)
-		    <div class="alert callout">
-		        <ul>
-		            @foreach ($errors->all() as $error)
-		                <li>{{ $error }}</li>
-		            @endforeach
-		        </ul>
-		    </div>
-		@endif
-
-		@if (session('status'))
-		    <div class="success callout">
-		        {{ session('status') }}
-		    </div>
-		@endif
-		
-	</div>
+			
+	</section>
 </div>
+
 
 
 @endsection

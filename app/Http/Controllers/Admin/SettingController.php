@@ -24,32 +24,36 @@ class SettingController extends Controller
 		return view('admin.setting.index', compact('user'));
 	}
 
-	public function showSettingName($name)
+	public function showEditForm($param)
 	{
-		return view('admin.setting.name', compact('name'));
+		$user = $this->user->getUser();
+		return view('admin.setting.edit', compact('user', 'param'));
 	}
 
-	public function changeName(Request $request)
+	public function edit($param, Request $request)
 	{
-		$this->validate($request, ['name' => 'required']);
-
-		$this->user->update(['name' => $request->name]);
-
-		return redirect('/setting')->with('status', trans('setting.name'));
-
+		$this->validate($request, $this->getRules($param));
+		$data = $this->getDataByParam($param, $request->all());
+		$this->user->update($data);
+		return redirect('/setting')->with('status', trans('setting.'. $param));
 	}
 
-	public function showSettingPassword()
+	protected function getRules($param)
 	{
-		return view('admin.setting.password');
+		if ($param == 'password') {
+			return ['password' => 'required|min:6|confirmed'];
+		}else {
+			return ['name' => 'required'];
+		}
 	}
 
-	public function changePassword(Request $request)
+	protected function getDataByParam($param, array $data)
 	{
-		$this->validate($request, ['password' => 'required|min:6|confirmed']);
-
-		$this->user->update(['password' => bcrypt($request->password)]);
-
-		return redirect('/setting')->with('status', trans('setting.password'));
+		if ($param == 'password') {
+			return ['password' => bcrypt($data['password'])];
+		}else {
+			return ['name' => $data['name']];
+		}
 	}
+
 }

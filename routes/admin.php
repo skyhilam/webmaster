@@ -21,7 +21,7 @@ Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function() {
 // for all
 Route::group(['middleware' => ['auth']], function() {
 	Route::get('/', 'Admin\DashboardController@get');
-
+	
 	Route::get('/logout', 'Auth\LoginController@logout');
 
 
@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::get('/', 'SettingController@showSetting');
 
 		Route::get('{param}', 'SettingController@showEditForm');
-		Route::patch('{param}', 'SettingController@save');
+		Route::patch('{param}', 'SettingController@edit');
 	});
 
 });
@@ -74,18 +74,18 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['admin', 'auth']], functi
 
 	Route::get('/roles', 'RoleController@get');
 
-	Route::get('/members', 'MemberController@get');
+	Route::get('/members', 'MemberController@index');
 	Route::get('/member/create', 'MemberController@showCreateForm');
-	Route::post('/member/create', 'MemberController@register');
+	Route::post('/member/create', 'MemberController@createMember');
 
 	Route::get('/member/info/{id}', 'MemberController@showInfo');
 
 	Route::group(['prefix' => '/member/edit'], function() {
-		Route::get('/name/{id}', 'MemberController@showEditNameForm');
-		Route::get('/role/{id}', 'MemberController@showEditRoleForm');
-		Route::get('/password/{id}', 'MemberController@showEditPasswordForm');
 
-		Route::patch('/{param}/{id}', 'MemberController@changeParam');
+		
+
+		Route::get('/{param}/{id}', 'MemberController@showEditForm');
+		Route::patch('/{param}/{id}', 'MemberController@edit');
 
 		// Route::put('/member/edit/{id}', 'MemberController@changeInfo');
 		// Route::patch('/member/edit/{id}', 'MemberController@changePassword');

@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_TITLE', 'CLOVER WEBMASTER'),
+    'name' => env('APP_TITLE', 'CLOVER'),
 
     /*
     |--------------------------------------------------------------------------
@@ -184,7 +184,7 @@ return [
         JD\Cloudder\CloudderServiceProvider::class,
 
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
-
+        
     ],
 
     /*
@@ -238,6 +238,8 @@ return [
         'Markdown' => Indal\Markdown\Facade::class,
 
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+
+
     ],
 
 

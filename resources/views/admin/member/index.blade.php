@@ -2,79 +2,68 @@
 
 
 @section('content')
-<br>
-<div class="row">
-	<div class="columns medium-8 medium-centered">
-		@if (session('status'))
-		    <div class="success callout">
-		        {{ session('status') }}
-		    </div>
-		@endif
-
-		@if (count($errors->delete) > 0)
-		    <div class="alert callout">
-		        <ul>
-		            @foreach ($errors->delete->all() as $error)
-		                <li>{{ $error }}</li>
-		            @endforeach
-		        </ul>
-		    </div>
-		@endif
-		
-		<h3>{{trans('layout.members')}}</h3>
-		<br>
-
-		<div class="row collapse">
-			<div class="columns medium-10">
-				<form action="{{url('/members')}}" method="get">
-					<select name="role" id="role-select">
-						<option value="total" {{$role == 'total'? 'selected': ''}}>All</option>
-						@foreach($roles as $item)
-						<option value="{{$item->slug}}" {{$item->slug == $role? 'selected': ''}}>{{$item->title}}</option>
-						@endforeach
-					</select>
-				</form>
-			</div>
-			<div class="columns medium-2">
-				<a href="{{url('member/create')}}" class="button expanded">{{trans('layout.create_new')}}</a>
-			</div>
-		</div>
+<div class="row ">
+	<div class="columns">
+		<div class="console-section">
 	
-		<table>
-			<thead>
-				<tr>
-					<th>{{trans('layout.name')}}</th>
-					<th>{{trans('layout.email')}}</th>
-					<th width="200" class="text-center">{{trans('layout.role')}}</th>
-					<th width="80"></th>
-				</tr>
-			</thead>
 
-			<tbody>
+			<div class="row">
+				<div class="columns">
+					{!! Breadcrumbs::render('members') !!}
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="columns">
+					@if (session('status'))
+					    <div class="success callout">
+					        {{ session('status') }}
+					    </div>
+					@endif
+				</div>
+			</div>
+			
+			<div class="row medium-up-4">
+				<div class="column">
+					<a href="{{url('member/create')}}" class="body-color">
+					<div class="box board flex-center">
+						<div class="text-center ">
+							<p><img src="{{asset('/img/admin/plus.png')}}"></p>
+							<p >{{trans('layout.create_member')}}</p>
+						</div>
+					</div>
+					</a>
+				</div>
 				@foreach($users as $user)
-				<tr>
-					<td>{{$user->name}}</td>
-					<td>{{$user->email}}</td>
-					<td class="text-center">{{trans('layout.'. $user->role->slug)}}</td>
-					<td><a href="{{url('/member/info/'. $user->public_id)}}" >{{trans('layout.info')}}</a></td>
-					<!-- <td>
-						<form action="{{url('member/delete/'. $user->public_id)}}" method="post">
-							{{csrf_field()}}
-							<input type="hidden" name="_method" value="delete">
-							<div class="button-group expanded" style="margin-bottom: 0">
-								<a href="{{url('/member/info/'. $user->public_id)}}" class="button">{{trans('layout.info')}}</a>
-								<a href="{{url('/member/edit/'. $user->public_id)}}" class="button warning">{{trans('layout.edit')}}</a>
-								<button class="button alert" type="submit">{{trans('layout.delete')}}</button>
+				<div class="column">
+					<a href="{{$url =url('/member/info/'. $user->public_id)}}" class="body-color">
+						<div class="box board">
+							<div class="board-picture">
+								<img src="{{climage('person_fus5ed','q_80,w_254,h_188,c_lpad')}}">
 							</div>
-						</form>
-					</td> -->
-				</tr>
+							<div class="board-content">
+								<p>
+									{{trans('layout.'. $user->role->slug)}} 
+									<br> 
+									{{str_limit($user->name, 40)}}
+								</p>
+							</div>
+						</div>
+					</a><br>
+				</div>
 				@endforeach
-			</tbody>
-		</table>
-		{{$users->links()}}
+			</div>
+
+			<div class="text-center">
+				{{$users->links()}}
+			</div>
+
+		</div>
 	</div>
 </div>
+
+
+
 
 
 

@@ -29,7 +29,7 @@ class PostController extends Controller
 
 	public function get(Request $request)
 	{	
-		$posts = $this->post->indexs(12, $request->input('type', 'all'));
+		$posts = $this->post->indexs(11, $request->input('type', 'all'));
 		$types = $this->types->all();
 
 		return view('admin.post.index', compact('posts', 'types'));

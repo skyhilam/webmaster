@@ -1,6 +1,6 @@
 <?php 
 return 
 [
-	'deleted' => '用戶已被刪除',
-	'created' => '用戶已新增',
+	'deleted' => '刪除會員成功',
+	'created' => '新增會員成功',
 ];

@@ -12,37 +12,24 @@ Breadcrumbs::register('members', function($breadcrumbs)
 Breadcrumbs::register('member/create', function($breadcrumbs)
 {
 	$breadcrumbs->parent('members');
-    $breadcrumbs->push(trans('layout.create_new'));
+    $breadcrumbs->push(trans('layout.create_member'));
 });
 
 // Members > info
-Breadcrumbs::register('members/info', function($breadcrumbs)
+Breadcrumbs::register('member/info', function($breadcrumbs, $user)
 {
 	$breadcrumbs->parent('members');
-    $breadcrumbs->push(trans('layout.personal'), url('/member/info/'. request()->id));
+    $breadcrumbs->push($user->name, url('/member/info/'. $user->public_id));
 });
 
 
-// Members > info > name
-Breadcrumbs::register('members/edit/name', function($breadcrumbs)
+// Members > edit
+Breadcrumbs::register('member/edit', function($breadcrumbs, $user)
 {
-	$breadcrumbs->parent('members/info');
-    $breadcrumbs->push(trans('layout.name'));
+	$breadcrumbs->parent('member/info', $user);
+    $breadcrumbs->push(trans('layout.'. request()->param));
 });
 
-// Members > info > role
-Breadcrumbs::register('members/edit/role', function($breadcrumbs)
-{
-	$breadcrumbs->parent('members/info');
-    $breadcrumbs->push(trans('layout.role'));
-});
-
-// Members > info > password
-Breadcrumbs::register('members/edit/password', function($breadcrumbs)
-{
-	$breadcrumbs->parent('members/info');
-    $breadcrumbs->push(trans('layout.password'));
-});
 
 
 // Setting
@@ -52,18 +39,13 @@ Breadcrumbs::register('setting', function($breadcrumbs)
 });
 
 // Setting > name
-Breadcrumbs::register('setting/name', function($breadcrumbs)
+Breadcrumbs::register('setting/edit', function($breadcrumbs)
 {
 	$breadcrumbs->parent('setting');
-    $breadcrumbs->push(trans('layout.name'));
+    $breadcrumbs->push(trans('layout.'.request()->param));
 });
 
-// Setting > password
-Breadcrumbs::register('setting/password', function($breadcrumbs)
-{
-	$breadcrumbs->parent('setting');
-    $breadcrumbs->push(trans('layout.password'));
-});
+
 
 // Types
 Breadcrumbs::register('post/types', function($breadcrumbs)
@@ -121,4 +103,8 @@ Breadcrumbs::register('post/edit', function($breadcrumbs)
 	$breadcrumbs->push(trans("layout.". request()->param));
 });
 
-
+// Analytics
+Breadcrumbs::register('analytics', function($breadcrumbs)
+{
+	$breadcrumbs->push(trans('layout.analytics'), url('/analytics'));
+});

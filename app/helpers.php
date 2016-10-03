@@ -2,18 +2,18 @@
 if (!function_exists('classActivePath')) {
     function classActivePath($path)
     {
-        return Request::is($path) ? ' class="active"' : '';
+        return Request::is($path) ? ' class=active' : '';
     }
 }
 if (!function_exists('classActiveSegment')) {
     function classActiveSegment($segment, $value)
     {
         if (!is_array($value)) {
-            return Request::segment($segment) == $value ? ' class="active"' : '';
+            return Request::segment($segment) == $value ? ' class=active' : '';
         }
         foreach ($value as $v) {
             if (Request::segment($segment) == $v) {
-                return ' class="active"';
+                return ' class=active';
             }
         }
         return '';
@@ -50,5 +50,11 @@ if (!function_exists('clImage')) {
     {
         $style = $style? $style.'/': '';
         return config('cloudder.baseUrl'). '/image/upload/'. $style. config('cloudder.version').'/'. $name;
+    }
+}
+if (!function_exists('icon')) {
+    function icon($name, $class = '')
+    {
+        return '<img class="'. $class.'" src="'. asset('/img/admin/icon/'. $name. '.svg').'">';
     }
 }

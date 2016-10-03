@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "69155017dd8b3c57a63915d68cc946a8",
-    "content-hash": "80a8cba5afd96ed692ef7b94cd381727",
+    "hash": "4dac5b4978803763be37a28c810e70b2",
+    "content-hash": "eb9fbb4b2774738be9283e5dde76de23",
     "packages": [
         {
             "name": "andreasindal/laravel-markdown",
@@ -49,6 +49,52 @@
             ],
             "description": "Simple Blade directive for markdown parsing.",
             "time": "2016-09-18 21:14:06"
+        },
+        {
+            "name": "anlutro/l4-settings",
+            "version": "0.4.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/anlutro/laravel-settings.git",
+                "reference": "7c7091529cc8e307dd4cf3c66b1d5bdb6bc4444e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/anlutro/laravel-settings/zipball/7c7091529cc8e307dd4cf3c66b1d5bdb6bc4444e",
+                "reference": "7c7091529cc8e307dd4cf3c66b1d5bdb6bc4444e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": ">=4.1 <6.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "illuminate/database": ">=4.1 <6.0",
+                "illuminate/filesystem": ">=4.1 <6.0",
+                "mockery/mockery": "0.9.*"
+            },
+            "suggest": {
+                "illuminate/database": "Save settings to a database table.",
+                "illuminate/filesystem": "Save settings to a JSON file."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "anlutro\\LaravelSettings\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Lutro",
+                    "email": "anlutro@gmail.com"
+                }
+            ],
+            "description": "Persistent settings in Laravel.",
+            "time": "2016-08-24 14:06:54"
         },
         {
             "name": "approached/laravel-image-optimizer",
@@ -4059,6 +4105,41 @@
                 "test"
             ],
             "time": "2015-05-11 14:41:42"
+        },
+        {
+            "name": "larapack/config-writer",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/larapack/config-writer.git",
+                "reference": "b36a716833240fe9e8b4b4d007b68ef9e91a1124"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/larapack/config-writer/zipball/b36a716833240fe9e8b4b4d007b68ef9e91a1124",
+                "reference": "b36a716833240fe9e8b4b4d007b68ef9e91a1124",
+                "shasum": ""
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Save changes to the configuration file in script.",
+            "keywords": [
+                "config",
+                "larapack",
+                "laravel",
+                "package",
+                "save",
+                "writer"
+            ],
+            "time": "2016-04-28 12:45:27"
         },
         {
             "name": "mockery/mockery",

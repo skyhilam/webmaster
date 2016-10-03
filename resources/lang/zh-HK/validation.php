@@ -135,5 +135,7 @@ return [
         'time'                  => '時間',
         'available'             => '可用的',
         'size'                  => '大小',
+        'images'                => '圖片',
+        'images.0'              => '圖片',
     ],
 ];
