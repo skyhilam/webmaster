@@ -3727,13 +3727,20 @@ body {
   .medium-editor-element * {
     margin: 0; }
 
-table input[type="text"]:hover, table input[type="text"], table input[type="text"]:focus, table input[type="password"]:hover, table input[type="password"], table input[type="password"]:focus, table input[type="email"]:hover, table input[type="email"], table input[type="email"]:focus, table select:hover, table select, table select:focus, table .medium-editor-element:hover, table .medium-editor-element, table .medium-editor-element:focus {
+table input[type="text"]:hover, table input[type="text"], table input[type="text"]:focus, table input[type="password"]:hover, table input[type="password"], table input[type="password"]:focus, table input[type="email"]:hover, table input[type="email"], table input[type="email"]:focus, table select:hover, table select, table select:focus, table .medium-editor-element:hover, table .medium-editor-element, table .medium-editor-element:focus,
+table textarea:hover,
+table textarea,
+table textarea:focus {
+  resize: none;
   border: none;
   box-shadow: none;
   outline: none;
   margin: 0; }
 
-table input[type="text"], table input[type="text"]:hover, table input[type="text"]:focus, table input[type="password"], table input[type="password"]:hover, table input[type="password"]:focus, table input[type="email"], table input[type="email"]:hover, table input[type="email"]:focus, table .medium-editor-element, table .medium-editor-element:hover, table .medium-editor-element:focus {
+table input[type="text"], table input[type="text"]:hover, table input[type="text"]:focus, table input[type="password"], table input[type="password"]:hover, table input[type="password"]:focus, table input[type="email"], table input[type="email"]:hover, table input[type="email"]:focus, table .medium-editor-element, table .medium-editor-element:hover, table .medium-editor-element:focus,
+table textarea,
+table textarea:hover,
+table textarea:focus {
   background: inherit; }
 
 table td {

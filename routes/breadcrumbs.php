@@ -108,3 +108,24 @@ Breadcrumbs::register('analytics', function($breadcrumbs)
 {
 	$breadcrumbs->push(trans('layout.analytics'), url('/analytics'));
 });
+
+
+// Messages
+Breadcrumbs::register('messages', function($breadcrumbs)
+{
+	$breadcrumbs->push(trans('layout.messages'), url('/messages'));
+});
+
+// Messages > create
+Breadcrumbs::register('messages/compose', function($breadcrumbs)
+{
+	$breadcrumbs->parent('messages');
+	$breadcrumbs->push(trans("layout.compose"));
+});
+
+// Messages > info
+Breadcrumbs::register('messages/info', function($breadcrumbs, $subject)
+{
+	$breadcrumbs->parent('messages');
+	$breadcrumbs->push($subject);
+});

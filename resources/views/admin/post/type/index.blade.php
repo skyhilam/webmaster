@@ -8,7 +8,7 @@
 			
 		<div class="row collapse">
 			<div class="columns medium-2 medium-offset-10">
-				<a href="{{url('/post/type/create')}}" class="button expanded">{{trans('layout.create_new')}}</a>
+				<a href="{{url('/postTypes/create')}}" class="button expanded">{{trans('layout.create_new')}}</a>
 			</div>
 		</div>
 
@@ -16,7 +16,7 @@
 			@foreach($types as $type)
 			<tr>
 				<td>{{$type->title}}</td>
-				<td width="80"><a href="{{url('/post/type/edit/'. $type->id. '/title')}}">{{trans('layout.edit')}}</a></td>
+				<td width="80"><a href="{{url('/postTypes/edit/'. $type->id. '/title')}}">{{trans('layout.edit')}}</a></td>
 			</tr>
 			@endforeach
 		</table>

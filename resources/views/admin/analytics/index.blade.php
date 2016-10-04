@@ -53,10 +53,6 @@
 
 
 @section('js')
-<script>
-$('#date-range').change(function() {
-	$(this).parent().submit()
-});
-</script>
+
 
 @endsection

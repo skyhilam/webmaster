@@ -40,26 +40,26 @@ class AnalyticsRepository
 		$s = 'sessions';
 		$p = 'pageviews';
 		$u = 'users';
-		return [
-			$p =>
-				[
-					'day' => $today_report[$p],
-					'week' => $last_7_days_report[$p],
-					'month' => $last_30_days_report[$p]
-				],
-			$s =>
-				[
-					'day' => $today_report[$s],
-					'week' => $last_7_days_report[$s],
-					'month' => $last_30_days_report[$s]
-				],
-			$u =>
-				[
-					'day' => $today_report[$u],
-					'week' => $last_7_days_report[$u],
-					'month' => $last_30_days_report[$u]
-				],
-		];
+		return collect([
+					$p =>
+						[
+							'day' => $today_report[$p],
+							'week' => $last_7_days_report[$p],
+							'month' => $last_30_days_report[$p]
+						],
+					$s =>
+						[
+							'day' => $today_report[$s],
+							'week' => $last_7_days_report[$s],
+							'month' => $last_30_days_report[$s]
+						],
+					$u =>
+						[
+							'day' => $today_report[$u],
+							'week' => $last_7_days_report[$u],
+							'month' => $last_30_days_report[$u]
+						],
+				]);
 
 
 

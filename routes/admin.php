@@ -20,7 +20,7 @@ Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function() {
 
 // for all
 Route::group(['middleware' => ['auth']], function() {
-	Route::get('/', 'Admin\DashboardController@get');
+	Route::get('/', 'Admin\DashboardController@index');
 	
 	Route::get('/logout', 'Auth\LoginController@logout');
 
@@ -30,6 +30,14 @@ Route::group(['middleware' => ['auth']], function() {
 
 		Route::get('{param}', 'SettingController@showEditForm');
 		Route::patch('{param}', 'SettingController@edit');
+	});
+
+	Route::group(['prefix' => '/messages'], function() {
+		Route::get('/', 'MessageController@index');
+		Route::get('/compose', 'MessageController@showCreateForm');
+		Route::post('/compose', 'MessageController@send');
+
+		Route::get('/info/{id}', 'MessageController@showInfo');
 	});
 
 });
@@ -47,12 +55,14 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth', 'redac']], functi
 	Route::patch('/post/edit/{id}/{param}', 'PostController@edit');
 
 	// post types
-	Route::get('/post/types', 'TypesController@index');
-	Route::get('/post/type/create', 'TypesController@showCreateForm');
-	Route::post('/post/type/create', 'TypesController@create');
-	Route::get('/post/type/edit/{id}/{param}', 'TypesController@showEditForm');
-	Route::patch('/post/type/edit/{id}/{param}', 'TypesController@edit');
-	Route::delete('/post/type/edit/{id}/{param}', 'TypesController@delete');
+	Route::group(['prefix' => '/postTypes'], function() {
+		Route::get('/', 'TypesController@index');
+		Route::get('/create', 'TypesController@showCreateForm');
+		Route::post('/create', 'TypesController@create');
+		Route::get('/edit/{id}/{param}', 'TypesController@showEditForm');
+		Route::patch('/edit/{id}/{param}', 'TypesController@edit');
+		Route::delete('/edit/{id}/{param}', 'TypesController@delete');
+	});
 
 	// analytics
 	Route::get('/analytics', 'AnalyticsController@get');
@@ -68,7 +78,7 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['admin', 'auth']], functi
 
 
 
-	Route::get('/messages/inbox', 'MessageController@get');
+	
 
 	
 

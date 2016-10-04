@@ -18,10 +18,11 @@ return [
     // auth
     'login'                                     => '登入',
     'logout'                                    => '登出',
-    'send'                                      => '送出',
+    'send'                                      => '傳出',
     'forgot_password'                           => '忘記密碼',
     'address'                                   => '地址',
     'tel'                                       => '電話',
+    'compose'                                   => '撰寫',
     'email'                                     => '郵箱',
     'password'                                  => '密碼',
     'confirm_password'                          => '確認密碼',
@@ -105,6 +106,13 @@ return [
     'analytics_compare_day'         => '與昨天前比較',
     'analytics_compare_week'        => '與上 7 天前比較',
     'analytics_compare_month'       => '與上 30 天前比較',
+
+    // messages
+    'to'        => '收件者',
+    'subject'   => '主旨',
+    'cc'        => '副本',
+    'date'      => '日期',
+    'read'      => '閱讀',
 ];
 
 

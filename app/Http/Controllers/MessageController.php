@@ -2,34 +2,64 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-
-use App\Foundation\Message\MessageUsers;
 use Validator;
-use App\Models\Message;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Repositories\UserRepository;
+use App\Repositories\MessageRepository;
+use App\Foundation\Message\MessageUsers;
+
 
 class MessageController extends Controller
 {
-	use MessageUsers;
+    protected $messages;
+    protected $user;
+
+    public function __construct(MessageRepository $messages, UserRepository $user)
+    {
+        $this->messages = $messages;
+        $this->user = $user;
+    }
+
+	// use MessageUsers;
+
+    public function index()
+    {
+        $messages = $this->user->getMessages();
+        return view('admin.messages.index', compact('messages'));
+    }
+
+    public function showCreateForm()
+    {
+        return view('admin.messages.create');
+    }
+
+    public function send(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        $this->messages->send($request->all());
+        $message = $this->messages->create($request->all());
+
+        return redirect('/messages')->with('status', trans('messages.sent'));
+    }
+
+    public function showInfo($id)
+    {
+        $message = $this->messages->getById($id);
+
+        return view('admin.messages.info', compact('message'));
+    }
 
 	protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255',
+            'to' => 'required|max:255',
+            'subject' => 'required|max:255',
             'content' => 'required',
         ]);
     }
 
-    protected function create(array $data)
-    {
-        return Message::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'content' => $data['content'],
-        ]);
-    }
+    
 
 }

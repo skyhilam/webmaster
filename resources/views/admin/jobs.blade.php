@@ -26,7 +26,9 @@
 * message email style
 * design
 	* post ✔︎
+	* post types
 	* home
+	* messages
 	* members ✔︎
 	* setting ✔︎
 	* analytics ✔︎

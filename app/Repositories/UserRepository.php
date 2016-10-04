@@ -21,4 +21,11 @@ class UserRepository extends Repository
 	{
 		$this->user()->update($data);
 	}
+
+	public function getMessages($n = 12)
+	{
+		return $this->getUser()->messages()->oldest('seen')
+			->latest()
+			->paginate($n);
+	}
 }

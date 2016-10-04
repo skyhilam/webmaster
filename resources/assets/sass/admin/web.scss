@@ -185,17 +185,20 @@ body {
 
 table
 {
-	input[type="text"], input[type="password"], input[type="email"], select, .medium-editor-element
+	input[type="text"], input[type="password"], input[type="email"], select, .medium-editor-element,
+	textarea
 	{
 		&:hover, &, &:focus
 		{
+			resize: none;
 			border: none;
 			box-shadow: none;
 			outline: none;
 			margin: 0;
 		}
 	}
-	input[type="text"], input[type="password"], input[type="email"], .medium-editor-element
+	input[type="text"], input[type="password"], input[type="email"], .medium-editor-element,
+	textarea
 	{
 		&, &:hover, &:focus
 		{
