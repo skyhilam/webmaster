@@ -18,7 +18,7 @@ require('laravel-elixir-vue');
 elixir(mix => {
 	// mix.copy('node_modules/foundation-sites/scss/settings', 'resources/assets/sass/web');
     mix.sass('admin/app.scss', 'public/css/admin/app.css')
-    	.webpack('admin/app.js', 'public/js/web/app.js');
+    	.webpack('admin/app.js', 'public/js/admin/app.js');
     mix.sass('web/app.scss', 'public/css/web/app.css')
     	.webpack('web/app.js', 'public/js/web/app.js');
 
