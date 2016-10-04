@@ -49,20 +49,20 @@ $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #62269e,
+  primary: #2199e8,
   secondary: #777,
   success: #3adb76,
   warning: #ffae00,
   alert: #ec5840,
 );
-$light-gray: #f2f2f2;
-$medium-gray: #e6e6e6;
-$dark-gray: #707070;
+$light-gray: #e6e6e6;
+$medium-gray: #cacaca;
+$dark-gray: #8a8a8a;
 $black: #0a0a0a;
-$white: #ffffff;
-$body-background: #e6e6e6;
-$body-font-color: #666666;
-$body-font-family: "Helvetica-Light", "Adobe Fan Heiti Std", 'Microsoft JhengHei', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$white: #fefefe;
+$body-background: $white;
+$body-font-color: $black;
+$body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -118,7 +118,7 @@ $header-sizes: (
   medium: (
     'h1': 48,
     'h2': 40,
-    'h3': 32,
+    'h3': 31,
     'h4': 25,
     'h5': 20,
     'h6': 16,
@@ -221,8 +221,8 @@ $badge-font-size: 0.6rem;
 // 10. Breadcrumbs
 // ---------------
 
-$breadcrumbs-margin: $global-margin 0 $global-margin 0;
-$breadcrumbs-item-font-size: rem-calc(14);
+$breadcrumbs-margin: 0 0 $global-margin 0;
+$breadcrumbs-item-font-size: rem-calc(11);
 $breadcrumbs-item-color: $primary-color;
 $breadcrumbs-item-color-current: $black;
 $breadcrumbs-item-color-disabled: $medium-gray;
@@ -233,7 +233,7 @@ $breadcrumbs-item-slash: true;
 // 11. Button
 // ----------
 
-$button-padding: 0.425em 1em;
+$button-padding: 0.85em 1em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
 $button-background: $primary-color;
@@ -342,16 +342,16 @@ $select-background: $white;
 $select-triangle-color: $dark-gray;
 $select-radius: $global-radius;
 $input-color: $black;
-$input-placeholder-color: $dark-gray;
+$input-placeholder-color: $medium-gray;
 $input-font-family: inherit;
-$input-font-size: rem-calc(14);
+$input-font-size: rem-calc(16);
 $input-background: $white;
 $input-background-focus: $white;
 $input-background-disabled: $light-gray;
 $input-border: 1px solid $medium-gray;
 $input-border-focus: 1px solid $dark-gray;
 $input-shadow: inset 0 1px 2px rgba($black, 0.1);
-// $input-shadow-focus: 0 0 5px $medium-gray;
+$input-shadow-focus: 0 0 5px $medium-gray;
 $input-cursor-disabled: not-allowed;
 $input-transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
 $input-number-spinners: true;
@@ -494,7 +494,7 @@ $switch-paddle-transition: all 0.25s ease-out;
 
 $table-background: $white;
 $table-color-scale: 5%;
-// $table-border: 1px solid smart-scale($table-background, $table-color-scale);
+$table-border: 1px solid smart-scale($table-background, $table-color-scale);
 $table-padding: rem-calc(8 10 10);
 $table-hover-scale: 2%;
 $table-row-hover: darken($table-background, $table-hover-scale);
@@ -559,7 +559,7 @@ $tooltip-radius: $global-radius;
 // -----------
 
 $topbar-padding: 0.5rem;
-$topbar-background: $white;
+$topbar-background: $light-gray;
 $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 1rem;
 $topbar-input-width: 200px;
