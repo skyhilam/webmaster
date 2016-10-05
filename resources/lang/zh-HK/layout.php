@@ -82,6 +82,7 @@ return [
     'create'            => '新增',
     'create_new'            => '新增',
     'create_member'     => '新增會員',
+    'create_post_type'      => '新增文章類型',
     'created_at'            => '創建日期',
     'personal'              => '個人資料',
 

@@ -63,7 +63,7 @@
                     @endif
                     <li class="divide"></li>
 
-                    <li {{classActiveSegment(1, 'messages')}}><a href="{{ url('/messages') }}"><span class="icon-mail bookmark text-center" ></span> {{trans('layout.messages')}}<span class="icon-arrow float-right"></span></a></li>
+                    <li {{classActiveSegment(1, 'messages')}}><a href="{{ url('/messages') }}"><span class="icon-mail bookmark text-center" style="font-size: 12px"></span> {{trans('layout.messages')}}<span class="icon-arrow float-right"></span></a></li>
                     
                     @if(session()->get('statut') == 'admin' || session()->get('statut') == 'super')
                     <li {{classActiveSegment(1, 'members')}} {{classActiveSegment(1, 'member')}}><a href="{{ url('/members') }}"><span class="icon-members bookmark text-center" ></span> {{trans('layout.members')}}<span class="icon-arrow float-right"></span></a></li>

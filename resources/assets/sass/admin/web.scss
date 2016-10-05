@@ -6,7 +6,7 @@ body {
 // log in form
 .flex-center
 {
-	display: flex;
+	display: flex !important;
 	position: relative;
 	height: 100%;
 	align-items: center;
@@ -223,9 +223,16 @@ table
 // 4. Board
 .board
 {
+	display: block;
 	position: relative;
 	height: rem-calc(268);
 	background-color: $light-gray;
+	&.text
+	{
+		text-align: center;
+		height: auto;
+		padding: $global-padding;
+	}
 }
 
 .board-picture

@@ -1906,7 +1906,7 @@ select {
     cursor: default;
     text-transform: uppercase; }
     .breadcrumbs li:not(:last-child)::after {
-      color: #e6e6e6;
+      color: #62269e;
       content: "/";
       margin: 0 0.75rem;
       position: relative;
@@ -3609,8 +3609,8 @@ body {
   font-size: 14px; }
 
 .flex-center {
-  display: -webkit-box;
-  display: flex;
+  display: -webkit-box !important;
+  display: flex !important;
   position: relative;
   height: 100%;
   -webkit-box-align: center;
@@ -3753,9 +3753,14 @@ table label {
   padding: 0.5rem; }
 
 .board {
+  display: block;
   position: relative;
   height: 16.75rem;
   background-color: #f2f2f2; }
+  .board.text {
+    text-align: center;
+    height: auto;
+    padding: 1rem; }
 
 .board-picture {
   height: 11.75rem;

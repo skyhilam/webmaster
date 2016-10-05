@@ -48,22 +48,29 @@ Breadcrumbs::register('setting/edit', function($breadcrumbs)
 
 
 // Types
-Breadcrumbs::register('post/types', function($breadcrumbs)
+Breadcrumbs::register('postTypes', function($breadcrumbs)
 {
-	$breadcrumbs->push(trans('layout.post_types'), url('/post/types'));
+	$breadcrumbs->push(trans('layout.post_types'), url('/postTypes'));
 });
 
-// Type > edit
-Breadcrumbs::register('post/type/edit', function($breadcrumbs)
+// Types > info
+Breadcrumbs::register('postTypes/info', function($breadcrumbs, $type)
 {
-	$breadcrumbs->parent('post/types');
+	$breadcrumbs->parent('postTypes');
+    $breadcrumbs->push($type->title, url('/postTypes/info/'. $type->id));
+});
+
+// Type > info > edit
+Breadcrumbs::register('postTypes/edit', function($breadcrumbs, $type)
+{
+	$breadcrumbs->parent('postTypes/info', $type);
     $breadcrumbs->push(trans('layout.'. request()->param));
 });
 
 // Type > create
-Breadcrumbs::register('post/type/create', function($breadcrumbs)
+Breadcrumbs::register('postTypes/create', function($breadcrumbs)
 {
-	$breadcrumbs->parent('post/types');
+	$breadcrumbs->parent('postTypes');
     $breadcrumbs->push(trans('layout.create'));
 });
 

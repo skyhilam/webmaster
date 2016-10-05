@@ -3,55 +3,41 @@
 
 @section('content')
 
-<div class="row ">
-	<div class="columns medium-8 medium-centered">
-		
-		@include('admin.breadcrumbs.entete', ['title' => trans('layout.types'), 'render' => 'post/type/edit'])
-		
+@push('console_content')
 
-		<form action="{{request()->url()}}" method="post" enctype="multipart/form-data">
-			{{csrf_field()}}
-			<input type="hidden" name="_method" value="patch">
-			@if($param == 'title')
+{!! Breadcrumbs::render('postTypes/edit', $type) !!}
+
+
+<form action="{{request()->url()}}" method="post" enctype="multipart/form-data">
+	{{csrf_field()}}
+	<input type="hidden" name="_method" value="patch">
+	
+	
+	<table class="box">
+		<tr>
+			<td width="150" class="text-center">
+				<label for="{{$param}}">{{trans('layout.'.$param)}}</label>
+			</td>
 			
-			<div>
-				<label for="title">{{trans('layout.title')}}</label>
-				<input type="text" name="title" id="title" value="{{$type->title}}">
-			</div>
-			
-			@endif
-			
-			<button type="submit" class="button expanded">{{trans('layout.edit')}}</button>
+			<td>
+				@if($param == 'title')
+				<input type="text" name="title" id="title" value="{{$type->title}}" autofocus="">
+				@if($errors->has('title'))<span class="form-error is-visible">* {{$errors->first('title')}}</span>@endif
+				@endif
+			</td>
+		</tr>
+	</table>
 
-		</form>
-
-		<form  action="{{request()->url()}}" method="post">
-			{{csrf_field()}}
-			<input type="hidden" name="_method" value="delete">
-
-			<button type="button" class="button alert expanded" onclick="confirmDelete(this)">{{trans('layout.delete')}}</button>
-		</form>
-		
-		@if (count($errors) > 0)
-		    <div class="alert callout">
-		        <ul>
-		            @foreach ($errors->all() as $error)
-		                <li>{{ $error }}</li>
-		            @endforeach
-		        </ul>
-		    </div>
-		@endif
-
+	<br>
+	<div class="text-center">
+		<button type="submit" class="button box">{{trans('layout.edit')}}</button>
 	</div>
-</div>
+</form>
 
-<script>
-	function confirmDelete(e)
-	{
-		if (confirm('{{trans('layout.confirm_delete')}}')) {
-			$(e).parents('form').submit();
-		}
-	}
-</script>
+
+
+@endpush
+@include('admin.console_container')
+
 
 @endsection

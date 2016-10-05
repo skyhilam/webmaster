@@ -3,40 +3,34 @@
 
 @section('content')
 
-<div class="row ">
-	<div class="columns medium-8 medium-centered">
-		
-		@include('admin.breadcrumbs.entete', ['title' => trans('layout.create'), 'render' => 'post/type/create'])
-		
+@push('console_content')
+{!! Breadcrumbs::render('postTypes/create') !!}
 
-		<form action="{{request()->url()}}" method="post" >
-			{{csrf_field()}}
+<form action="{{request()->url()}}" method="post" enctype="multipart/form-data">
 
-			
-			<div>
-				<label for="title">{{trans('layout.title')}}</label>
-				<input type="text" name="title" id="title" value="{{old('title')}}">
-			</div>
-			
+	{{ csrf_field() }}
 
-			
-			<button type="submit" class="button expanded">{{trans('layout.create')}}</button>
-		</form>
-
-
-		
-		@if (count($errors) > 0)
-		    <div class="alert callout">
-		        <ul>
-		            @foreach ($errors->all() as $error)
-		                <li>{{ $error }}</li>
-		            @endforeach
-		        </ul>
-		    </div>
-		@endif
-
+	<div class="box">
+		<table>
+			<tr>
+				<td class="text-center" width="150"><label for="title">{{trans('layout.title')}}</label></td>
+				<td><input type="text" name="title" value="{{old('title')}}" maxlength="250" autofocus="">
+				@if($errors->has('title'))<span class="form-error is-visible">* {{$errors->first('title')}}</span>@endif
+				</td>
+			</tr>
+		</table>
 	</div>
-</div>
+
+	<br>
+	<div class="text-center">
+		<button type="submit" class="button box">{{trans('layout.create_new')}}</button>
+	</div>
+
+
+</form>
+
+@endpush
+@include('admin.console_container')
 
 
 

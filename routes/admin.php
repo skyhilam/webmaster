@@ -57,11 +57,12 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth', 'redac']], functi
 	// post types
 	Route::group(['prefix' => '/postTypes'], function() {
 		Route::get('/', 'TypesController@index');
+		Route::get('/info/{id}', 'TypesController@showInfo');
+		Route::delete('/info/{id}', 'TypesController@delete');
 		Route::get('/create', 'TypesController@showCreateForm');
 		Route::post('/create', 'TypesController@create');
 		Route::get('/edit/{id}/{param}', 'TypesController@showEditForm');
 		Route::patch('/edit/{id}/{param}', 'TypesController@edit');
-		Route::delete('/edit/{id}/{param}', 'TypesController@delete');
 	});
 
 	// analytics

@@ -1899,7 +1899,7 @@ select {
     cursor: default;
     text-transform: uppercase; }
     .breadcrumbs li:not(:last-child)::after {
-      color: #cacaca;
+      color: #2199e8;
       content: "/";
       margin: 0 0.75rem;
       position: relative;
