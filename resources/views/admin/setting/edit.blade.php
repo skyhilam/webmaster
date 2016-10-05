@@ -18,7 +18,7 @@
 
 		<td>
 			
-			<input type="password" name="password" id="password" placeholder="{{trans('layout.enter_new_password')}}">
+			<input type="password" name="password" id="password" placeholder="{{trans('layout.enter_new_password')}}" autofocus>
 			@if($errors->has('password'))
 			<span class="form-error is-visible">* {{$errors->first('password')}}</span>
 			@endif
@@ -37,7 +37,6 @@
 		<td>
 			
 			<input type="password" name="password_confirmation" id="password-confirmed" placeholder="{{trans('layout.enter_new_password_confirmation')}}">
-			<br><br>
 		</td>
 
 		
@@ -49,12 +48,9 @@
 		</td>
 		<td>
 			<div>
-				<input type="text" name="{{$param}}" id="{{$param}}" value="{{$user->$param}}">
+				<input type="text" name="{{$param}}" id="{{$param}}" value="{{$user->$param}}" autofocus="">
 				@if($errors->has($param))<span class="form-error is-visible">* {{$errors->first($param)}}</span>@endif
 			</div>
-			
-			<br>
-			<br>
 		</td>
 	</tr>
 	@endif

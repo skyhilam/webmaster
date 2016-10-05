@@ -10,17 +10,17 @@
 
 <table class="box">
 	<tr>
-		<td width="150" class="text-center">{{trans('layout.date')}}</td>
+		<td width="150" class="text-center"><p>{{trans('layout.date')}}</p></td>
 		<td><p>{{$message->created_at->format('Y-m-d H:i')}}</p></td>
 	</tr>
 
 	<tr>
-		<td class="text-center">{{trans('layout.subject')}}</td>
+		<td class="text-center"><p>{{trans('layout.subject')}}</p></td>
 		<td><p>{{$message->subject}}</p></td>
 	</tr>
 
 	<tr>
-		<td class="text-center">{{trans('layout.content')}}</td>
+		<td class="text-center"><p>{{trans('layout.content')}}</p></td>
 		<td><p>{{$message->content}}</p> <br></td>
 	</tr>
 </table>

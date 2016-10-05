@@ -23,23 +23,23 @@
 	<table class="box">
 		@foreach($trs as $tr)
 		<tr>
-			<td width="150" class="text-center">{{$tr['lable']}}</td>
+			<td width="150" class="text-center"><p>{{$tr['lable']}}</p></td>
 			@if($tr['url'])
 
 			@if($tr['html'])
 			<td >{!!$tr['data']!!}</td>
 			@else
-			<td ><b>{{$tr['data']}}</b></td>
+			<td ><p>{{$tr['data']}}</p></td>
 			@endif
 
-			<td width="80"><a href="{{$tr['url']}}">{{trans('layout.edit')}}</a></td>
+			<td width="80"><p><a href="{{$tr['url']}}">{{trans('layout.edit')}}</a></p></td>
 
 			@else
 
 			@if($tr['html'])
-			<td colspan="2">{!!$tr['data']!!}</td>
+			<td colspan="2" class="content">{!!$tr['data']!!}</td>
 			else
-			<td colspan="2"><b>{{$tr['data']}}</b></td>
+			<td colspan="2"><p>{{$tr['data']}}</p></td>
 			@endif
 
 			@endif
@@ -47,7 +47,7 @@
 		@endforeach
 
 		<tr>
-			<td class="text-center">{{trans('layout.image')}}</td>
+			<td class="text-center"><p>{{trans('layout.image')}}</p></td>
 			<td >
 
 				@foreach($post->images as $item)
@@ -57,15 +57,15 @@
 				@endforeach
 
 			</td>
-			<td ><a href="{{url("/post/edit/{$post->id}/images")}}">{{trans('layout.edit')}}</a></td>
+			<td ><p><a href="{{url("/post/edit/{$post->id}/images")}}">{{trans('layout.edit')}}</a></p></td>
 		</tr>
 		
 		<tr>
-			<td class="text-center">{{trans('layout.default_image')}}</td>
+			<td class="text-center"><p>{{trans('layout.default_image')}}</p></td>
 			<td >
 				<img src="{{climage($post->image->public_id, 'w_40,h_40,c_thumb,q_80')}}">
 			</td>
-			<td ><a href="{{url("/post/edit/{$post->id}/image")}}">{{trans('layout.edit')}}</a></td>
+			<td ><p><a href="{{url("/post/edit/{$post->id}/image")}}">{{trans('layout.edit')}}</a></p></td>
 		</tr>
 
 	</table>

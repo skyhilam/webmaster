@@ -9,7 +9,7 @@
 
 <form action="{{ request()->url() }}" method="post">
 	{{csrf_field()}}
-	<table>
+	<table class="box">
 		<tr>
 			<td width="150" class="text-center"><label for="to">{{trans('layout.to')}}</label></td>
 			<td><input type="text" name="to" id="to" autofocus="true" value="{{old('to')}}"></td>

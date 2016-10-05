@@ -22,12 +22,12 @@
 	<table class="box">
 		@foreach($trs as $tr)
 		<tr>
-			<td width="150" class="text-center">{{$tr['lable']}}</td>
+			<td width="150" class="text-center"><p>{{$tr['lable']}}</p></td>
 			@if($tr['url'])
 
-			<td ><b>{{$tr['data']}}</b></td>
+			<td ><p>{{$tr['data']}}</p></td>
 
-			<td width="80"><a href="{{$tr['url']}}">{{trans('layout.edit')}}</a></td>
+			<td width="80"><p><a href="{{$tr['url']}}">{{trans('layout.edit')}}</a></p></td>
 
 			
 

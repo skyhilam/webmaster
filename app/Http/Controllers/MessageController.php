@@ -60,6 +60,12 @@ class MessageController extends Controller
         ]);
     }
 
+    public function delete($id)
+    {
+        $this->messages->getById($id)->delete();
+        return redirect('/messages')->with('status', trans('messages.deleted'));
+    }
+
     
 
 }

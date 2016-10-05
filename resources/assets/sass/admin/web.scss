@@ -61,7 +61,7 @@ body {
 // console navigation
 .console-nav 
 {
-	position: absolute;
+	position: fixed;
 	height: 100%;
 	background-color: $dark-gray;
 	color: $white;
@@ -212,6 +212,10 @@ table
 	label 
 	{
 		padding: 0.5rem;		
+	}
+	p {
+		padding: 0.5rem;
+		margin: 0;
 	}
 }
 .input-field

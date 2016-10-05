@@ -3,34 +3,56 @@
 
 @section('content')
 
-@push('console_content')
-<div class="float-right">
-	<a href="{{url('/messages/compose')}}" class="button">{{trans('layout.compose')}}</a>
+<div class="row">
+	<div class="columns">
+		
+		<div class="console-section">
+			
+			<div class="row">
+				<div class="columns">
+					{!! Breadcrumbs::render('messages') !!}
+				</div>
+			</div>
+
+			@if (session('status'))
+			<div class="row">
+				<div class="columns">
+				    <div class="success callout">
+				        {{ session('status') }}
+				    </div>
+				</div>
+			</div>
+			@endif
+
+			<div class="row medium-up-5">
+				<div class="column">
+					<a href="{{url('/messages/compose')}}" class="body-color">
+						<div class="box board text">
+							{{trans('layout.compose')}}
+						</div>
+					</a>
+				</div>
+				
+				@foreach($messages as $item)
+				<div class="column">
+					<a href="{{url('/messages/info/'. $item->id)}}" class="body-color">
+						<div class="box board text">
+							{{str_limit($item->subject, 20)}} <br>
+							{{$item->created_at->format('Y-m-d H:i')}}
+						</div>
+					</a>
+				</div>
+				@endforeach
+
+			</div>
+
+		</div>
+
+	</div>
 </div>
-{!! Breadcrumbs::render('messages') !!}
-@if (session('status'))
-    <div class="success callout">
-        {{ session('status') }}
-    </div>
-@endif
 
 
-<table class="box">
-	@foreach($messages as $item)
-	<tr>
-		<td width="100"><p>{{$item->created_at->format('Y-m-d')}}</p></td>
-		<td width="50"><p>{{$item->created_at->format('H:i')}}</p></td>
-		<td><p>{{$item->subject}}</p></td>
-		<td width="80"><a href="{{url('/messages/info/'. $item->id)}}">{{trans('layout.read')}}</a></td>
-	</tr>
-	@endforeach
-</table>
-<div class="text-center">
-	{{$messages->links()}}
-</div>
 
-@endpush
-@include('admin.console_container')
 
 
 @endsection

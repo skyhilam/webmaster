@@ -3650,7 +3650,7 @@ body {
   color: #d5352f; }
 
 .console-nav {
-  position: absolute;
+  position: fixed;
   height: 100%;
   background-color: #707070;
   color: #ffffff; }
@@ -3748,6 +3748,10 @@ table td {
 
 table label {
   padding: 0.5rem; }
+
+table p {
+  padding: 0.5rem;
+  margin: 0; }
 
 .input-field {
   padding: 0.5rem; }

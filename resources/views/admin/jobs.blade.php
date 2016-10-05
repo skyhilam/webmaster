@@ -22,17 +22,21 @@
 **不要心急賺錢，先規劃後實現！**
 
 ## 項目開發
-* message multiple send function
-* message email style
-* design
+
+
+
+## 工作記錄 (已完成)
+* design (2016/10/5)
 	* post ✔︎
-	* post types
-	* home
-	* messages
+	* post types ✔︎
+	* home ✔︎
+	* messages ✔︎
 	* members ✔︎
 	* setting ✔︎
 	* analytics ✔︎
 
+* 細汁table柵位css (2016/10/5)
+* member 去頭像 (2016/10/5)
 @endmarkdown
 
     

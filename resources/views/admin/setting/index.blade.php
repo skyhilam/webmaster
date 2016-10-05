@@ -14,22 +14,22 @@
 
 <table class="box">
 	<tr>
-		<td width="150" class="text-center">{{trans('layout.role')}}</td>
-		<td colspan="2">{{trans('layout.'.$user->role->slug)}}</td>
+		<td width="150" class="text-center"><p >{{trans('layout.role')}}</p></td>
+		<td colspan="2"><p>{{trans('layout.'.$user->role->slug)}}</p></td>
 	</tr>
 	<tr>
-		<td class="text-center">{{trans('layout.email')}}</td>
-		<td colspan="2">{{$user->email}}</td>
+		<td class="text-center"><p >{{trans('layout.email')}}</p></td>
+		<td colspan="2"><p>{{$user->email}}</p></td>
 	</tr>
 	<tr>
-		<td class="text-center">{{trans('layout.name')}}</td>
-		<td>{{$name = $user->name}}</td>
-		<td width="80" class="text-center"><a href="{{url('/setting/name')}}">{{trans('layout.edit')}}</a></td>
+		<td class="text-center"><p >{{trans('layout.name')}}</p></td>
+		<td><p>{{$name = $user->name}}</p></td>
+		<td width="80" class="text-center"><p><a href="{{url('/setting/name')}}">{{trans('layout.edit')}}</a></p></td>
 	</tr>
 	<tr>
-		<td class="text-center">{{trans('layout.password')}}</td>
-		<td>****************</td>
-		<td width="80" class="text-center"><a href="{{url('/setting/password')}}">{{trans('layout.edit')}}</a></td>
+		<td class="text-center"><p >{{trans('layout.password')}}</p></td>
+		<td><p>****************</p></td>
+		<td width="80" class="text-center"><p><a href="{{url('/setting/password')}}">{{trans('layout.edit')}}</a></p></td>
 	</tr>
 	<!-- <tr>
 		<td colspan="3"><b>{{trans('layout.company_setting')}}</b></td>

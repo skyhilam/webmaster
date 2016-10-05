@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::post('/compose', 'MessageController@send');
 
 		Route::get('/info/{id}', 'MessageController@showInfo');
+		Route::delete('/info/{id}', 'MessageController@delete');
 	});
 
 });
