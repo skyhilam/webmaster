@@ -9,8 +9,6 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 class NewMessage extends Notification
 {
-    protected $message;
-
     use Queueable;
 
     /**
@@ -18,10 +16,9 @@ class NewMessage extends Notification
      *
      * @return void
      */
-    public function __construct($message)
+    public function __construct()
     {
         //
-        $this->message = $message;
     }
 
     /**
@@ -43,13 +40,10 @@ class NewMessage extends Notification
      */
     public function toMail($notifiable)
     {
-        $message = $this->message;
         return (new MailMessage)
-                    ->subject('New Message')
-                    ->greeting('Hi, '. $notifiable->name)
-                    ->line('This is from Custom '. $message->name. ' ('. $message->email. ') message')
-                    ->with($message->content)
-                    ->line('Thank you for using our application!');
+            ->subject('New Message')
+            ->line('You have got new message!')
+            ->action('New message', url('/messages'));
     }
 
     /**

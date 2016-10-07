@@ -7,11 +7,10 @@
 {!! Breadcrumbs::render('messages/info', $message->subject) !!}
 
 
-
 <table class="box">
 	<tr>
 		<td width="150" class="text-center"><p>{{trans('layout.date')}}</p></td>
-		<td><p>{{$message->created_at->format('Y-m-d H:i')}}</p></td>
+		<td><p>{{$message->created_at}}</p></td>
 	</tr>
 
 	<tr>

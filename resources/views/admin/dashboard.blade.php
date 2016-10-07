@@ -43,15 +43,22 @@
 					{!! Breadcrumbs::render('messages') !!}
 
 					
-					<table class="box">
-						@foreach($messages as $item)
-						<tr>
-							<td width="150" class="text-center"><p>{{$item->created_at->format('Y-m-d H:i')}}</p></td>
-							<td><p>{{$item->subject}}</p></td>
-							<td width="80"><p><a href="{{url('/messages/info/'. $item->id)}}">{{trans('layout.read')}}</a></p></td>
-						</tr>
+					<div class="row medium-up-5">
+						
+						@foreach($inbox as $item)
+						<?php $message = $item->message;?>
+						<div class="column">
+							<a href="{{url('/messages/info/'. $message->id)}}" class="body-color">
+								<div class="box board text">
+									{{str_limit($message->subject, 20)}} <br>
+									{{trans('layout.from')}}: {{$message->name}}
+								</div>
+							</a>
+						</div>
 						@endforeach
-					</table>
+
+					</div>
+
 				</div>
 			</div>
 

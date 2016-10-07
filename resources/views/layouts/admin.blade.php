@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=1440, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css"> -->
@@ -81,7 +81,9 @@
 
                     @if(session()->get('statut') == 'super') 
 
-                    <li {{classActivePath('jobs')}}><a href="{{ url('/jobs') }}"><span class="icon-page bookmark text-center" ></span> Jobs<span class="icon-arrow float-right"></span></a></li>  
+                    <li {{classActivePath('jobs')}}><a href="{{ url('/jobs') }}"><span class="icon-page bookmark text-center" ></span> Jobs<span class="icon-arrow float-right"></span></a></li> 
+
+                     <li {{classActivePath('program_log')}}><a href="{{ url('/program_log') }}"><span class="icon-page bookmark text-center" ></span> Program Log<span class="icon-arrow float-right"></span></a></li> 
 
                     <li class="divide"></li>
                     @endif

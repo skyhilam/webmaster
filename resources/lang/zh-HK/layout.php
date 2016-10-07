@@ -109,7 +109,9 @@ return [
     'analytics_compare_month'       => '與上 30 天前比較',
 
     // messages
+    'from'      => '發件者',
     'to'        => '收件者',
+    'to_group'  => '收件群',
     'subject'   => '主旨',
     'cc'        => '副本',
     'date'      => '日期',

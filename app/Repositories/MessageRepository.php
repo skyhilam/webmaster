@@ -2,13 +2,22 @@
 namespace App\Repositories;
 
 
+use Notification;
 use App\Models\Message;
+use App\Notifications\NewMessage;
+use App\Repositories\UserRepository;
 
 class MessageRepository extends Repository
 {
-	public function __construct(Message $message)
+	protected $users;
+    protected $storage;
+
+
+	public function __construct(Message $message, UserRepository $users, MessageStorageRepository $storage)
 	{
 		$this->model = $message;
+		$this->users = $users;
+        $this->storage = $storage;
 	}
 
 
@@ -24,25 +33,36 @@ class MessageRepository extends Repository
 	public function create(array $data)
     {
         return $this->model->create([
-            'to' => $data['to'],
-            'cc' => $data['cc'],
-            'subject' => $data['subject'],
-            'content' => $data['content'],
+            'from' 		 => $data['from'],
+            'name'  => $data['name'],
+            'subject' 	 => $data['subject'],
+            'content' 	 => $data['content'],
+            'created_at' => \Carbon\Carbon::now()
         ]);
     }
 
 
     public function send(array $data)
     {
-    	$user = \Auth::user();
-    	\Mail::send('admin.emails.messages', $data, function ($message) use ($data, $user) {
-		    $message->from($user->email, $user->name);
+    	$user = $this->users->get();
+    	$data['from'] = $user->email;
+    	$data['name'] = $user->name;
 
-		    $message->to($data['to']);
-		    if ($data['cc']) {
-		    	$message->cc($data['cc']);
-		    }
-		    $message->subject($data['subject']);
-		});
+    	$to = $this->users->getByRoleId($data['to_group']);
+        $message = $this->create($data);
+
+    	$send_to = $to->map(function($item) use ($message) {
+            return ['user_id' => $item->id, 'message_id' => $message->id];
+        });
+
+        $this->storage->save($send_to->all());
+    	$this->notify($to);
     }
+
+    public function notify($users)
+    {
+    	Notification::send($users,new NewMessage());
+    }
+
+
 }

@@ -1,10 +1,17 @@
 <?php 
 namespace App\Repositories;
 
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class UserRepository extends Repository
 {
+
+	public function __construct(User $user)
+	{
+		$this->model = $user;
+	}
+
 	
 
 	public function user()
@@ -12,7 +19,7 @@ class UserRepository extends Repository
 		return Auth::user();
 	}
 
-	public function getUser()
+	public function get()
 	{
 		return $this->user();
 	}
@@ -22,10 +29,23 @@ class UserRepository extends Repository
 		$this->user()->update($data);
 	}
 
-	public function getMessages($n = 12)
+	public function getInbox($n = 12)
 	{
-		return $this->getUser()->messages()->oldest('seen')
-			->latest()
+		return $this->get()
+			->indox()
+			->oldest('seen')
 			->paginate($n);
 	}
+
+	public function getByRoleId($role_id)
+	{	
+		$user = $this->user();
+		$quent = $this->model->where('id', '!=', $user->id);
+		if ($role_id == 'total') {
+			return $quent->get();
+		}else {
+			return $quent->whereRoleId($role_id)->get();
+		}
+	}
+	
 }

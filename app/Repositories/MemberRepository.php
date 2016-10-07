@@ -14,11 +14,14 @@ class MemberRepository extends Repository
 
 	public function indexs($n = 15, $role)
 	{
-		$role_id = Statut::getRoleId();
+		$user = auth()->user();
+		$role_id = $user->role_id;
+		$id = $user->id;
 
 		if ($role != 'total') {
 			return $this->model
 				->where('role_id', '>=', $role_id)
+				->where('id', '!=', $id)
 				->with('role')
 				->whereHas('role', function($q) use ($role) {
 					$q->whereSlug($role);
@@ -31,6 +34,7 @@ class MemberRepository extends Repository
 
 		return $this->model
 			->where('role_id', '>=', $role_id)
+			->where('id', '!=', $id)
 			->with('role')
 			->latest()
 			->oldest('name')

@@ -2,28 +2,29 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Mail\DailyMail;
 use App\Http\Controllers\Controller;
-use App\Repositories\UserRepository;
+use App\Repositories\MessageStorageRepository;
 use App\Repositories\AnalyticsRepository;
 
 
 class DashboardController extends Controller
 {
 	protected $analytics;
-	protected $user;
+	protected $inbox;
 
-	public function __construct(AnalyticsRepository $analytics, UserRepository $user)
+	public function __construct(AnalyticsRepository $analytics, MessageStorageRepository $inbox)
 	{
 		$this->analytics = $analytics;
-		$this->user = $user;
+		$this->inbox = $inbox;
 	}
 
 	
 
 	public function index()
-	{
-		$messages = $this->user->getMessages(6);
+	{	
+		$inbox = $this->inbox->getTopSixNewMessage();
 		$summary = $this->analytics->get()->only('sessions');
-		return view('admin.dashboard', compact('summary', 'messages'));
+		return view('admin.dashboard', compact('summary', 'inbox'));
 	}
 }

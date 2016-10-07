@@ -33,8 +33,8 @@ class User extends Authenticatable
         return $this->belongsTo('App\Models\Role');
     }  
 
-    public function messages()
+    public function indox()
     {
-        return $this->hasMany('App\Models\Message', 'to', 'email');
+        return $this->hasMany('App\Models\MessageStorage', 'user_id', 'id');
     } 
 }

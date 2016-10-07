@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        Role::create(['title' => 'Superadmin', 'slug' => 'super']);
-        Role::create(['title' => 'Administrator', 'slug' => 'admin']);
-        Role::create(['title' => 'Redactor', 'slug' => 'redac']);
-        Role::create(['title' => 'User', 'slug' => 'user']);
+        Role::create(['title' => '超級管理者', 'en_title' => 'Superadmin', 'slug' => 'super']);
+        Role::create(['title' => '管理者', 'en_title' => 'Administrator', 'slug' => 'admin']);
+        Role::create(['title' => '編輯者', 'en_title' => 'Redactor', 'slug' => 'redac']);
+        Role::create(['title' => '用戶', 'en_title' => 'User', 'slug' => 'user']);
 
         PostType::insert([
             ['title' => '體育'],
@@ -31,8 +31,7 @@ class DatabaseSeeder extends Seeder
 
         User::create(['name' => 'redac', 'email' => 'redac@iclover.net', 'password' => bcrypt('asdfasdf'), 'role_id' => 3, 'public_id' => str_random(8)]);
 
-        for ($i=0; $i < 15; $i++) { 
-            User::create(['name' => 'user '. $i, 'email' => 'user'. $i.'@iclover.net', 'password' => bcrypt('asdfasdf'), 'role_id' => 4, 'public_id' => str_random(8)]);
-        }
+        User::create(['name' => 'user', 'email' => 'user@iclover.net', 'password' => bcrypt('asdfasdf'), 'role_id' => 4, 'public_id' => str_random(8)]);
+
     }
 }

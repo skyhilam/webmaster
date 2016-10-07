@@ -5,48 +5,55 @@ namespace App\Http\Controllers;
 use Validator;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Repositories\RoleRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\MessageRepository;
 use App\Foundation\Message\MessageUsers;
+use App\Repositories\MessageStorageRepository;
 
 
 class MessageController extends Controller
 {
     protected $messages;
     protected $user;
+    protected $roles;
+    protected $inbox;
 
-    public function __construct(MessageRepository $messages, UserRepository $user)
+    public function __construct(MessageRepository $messages, UserRepository $user, RoleRepository $roles, MessageStorageRepository $inbox)
     {
         $this->messages = $messages;
         $this->user = $user;
+        $this->roles = $roles;
+        $this->inbox = $inbox;
     }
 
 	// use MessageUsers;
 
     public function index()
     {
-        $messages = $this->user->getMessages();
-        return view('admin.messages.index', compact('messages'));
+        $inbox = $this->user->getInbox();
+        return view('admin.messages.index', compact('inbox'));
     }
 
     public function showCreateForm()
     {
-        return view('admin.messages.create');
+        $roles = $this->roles->all(2);
+
+        return view('admin.messages.create', compact('roles'));
     }
 
     public function send(Request $request)
     {
         $this->validator($request->all())->validate();
-
         $this->messages->send($request->all());
-        $message = $this->messages->create($request->all());
 
         return redirect('/messages')->with('status', trans('messages.sent'));
     }
 
+
     public function showInfo($id)
     {
-        $message = $this->messages->getById($id);
+        $message = $this->inbox->readById($id);
 
         return view('admin.messages.info', compact('message'));
     }
@@ -54,7 +61,6 @@ class MessageController extends Controller
 	protected function validator(array $data)
     {
         return Validator::make($data, [
-            'to' => 'required|max:255',
             'subject' => 'required|max:255',
             'content' => 'required',
         ]);
@@ -62,7 +68,7 @@ class MessageController extends Controller
 
     public function delete($id)
     {
-        $this->messages->getById($id)->delete();
+        $this->inbox->delete($id);
         return redirect('/messages')->with('status', trans('messages.deleted'));
     }
 

@@ -72,10 +72,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth', 'redac']], functi
 
 // for admin
 Route::group(['namespace' => 'Admin', 'middleware' => ['admin', 'auth']], function() {
-	Route::get('/wiki', function() {return view('admin.wiki');});
-	Route::get('/problems', function() {return view('admin.problems');});
-	ROute::get('/constructor', function() {return view('admin.constructor');});
 	ROute::get('/jobs', function() {return view('admin.jobs');});
+	ROute::get('/program_log', function() {return view('admin.program_log');});
 
 
 
@@ -116,8 +114,6 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['admin', 'auth']], functi
 
 
 
-Route::get('/message', 'MessageController@showMessageForm');
-Route::post('/message', 'MessageController@send');
 
 
 
