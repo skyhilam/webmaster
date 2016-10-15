@@ -37,7 +37,7 @@ return [
 
 
     // navigation
-    'home'          => '概覽',
+    'dashboard'     => '概覽',
     'profile'       => '個人設定',
     'posts'         => '文章',
     'post_types'    => '文章類型',
@@ -79,9 +79,9 @@ return [
 
 
     // member
-    'create'            => '新增',
+    'create'                => '新增',
     'create_new'            => '新增',
-    'create_member'     => '新增會員',
+    'create_member'         => '新增會員',
     'create_post_type'      => '新增文章類型',
     'created_at'            => '創建日期',
     'personal'              => '個人資料',
@@ -116,6 +116,15 @@ return [
     'cc'        => '副本',
     'date'      => '日期',
     'read'      => '閱讀',
+
+
+    // navigation
+    'url'           => '鏈結',
+    'order'         => '順序',
+    'icon'          => '圖案',
+    'navigations'   => '導覽',
+    'group'         => '群組',
+    'permission'    => '允許',
 ];
 
 

@@ -20,16 +20,16 @@ Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function() {
 
 // for all
 Route::group(['middleware' => ['auth']], function() {
-	Route::get('/', 'Admin\DashboardController@index');
+	Route::get('/dashboard', 'Admin\DashboardController@index');
 	
 	Route::get('/logout', 'Auth\LoginController@logout');
 
 
 	Route::group(['prefix' => '/setting', 'namespace' => 'Admin'], function() {
-		Route::get('/', 'SettingController@showSetting');
+		Route::get('/', 'SettingController@showInfo');
 
 		Route::get('{param}', 'SettingController@showEditForm');
-		Route::patch('{param}', 'SettingController@edit');
+		Route::patch('{param}', 'SettingController@submitEditForm');
 	});
 
 	Route::group(['prefix' => '/messages'], function() {
@@ -72,11 +72,20 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['auth', 'redac']], functi
 
 // for admin
 Route::group(['namespace' => 'Admin', 'middleware' => ['admin', 'auth']], function() {
-	ROute::get('/jobs', function() {return view('admin.jobs');});
-	ROute::get('/program_log', function() {return view('admin.program_log');});
+	Route::get('/jobs', function() {return view('admin.jobs');});
+	Route::get('/program_log', function() {return view('admin.program_log');});
 
 
 
+	Route::group(['prefix'=>'/navigations'], function() {
+		Route::get('/', 'NavigationController@index');
+		Route::get('/create', 'NavigationController@showCreateForm');
+		Route::post('/create', 'NavigationController@submitCreateForm');
+		Route::get('/info/{id}', 'NavigationController@showInfo');
+		Route::delete('/info/{id}', 'NavigationController@deleteInfo');
+		Route::get('/edit/{id}/{param}', 'NavigationController@showEditForm');
+		Route::patch('/edit/{id}/{param}', 'NavigationController@submitEditForm');
+	});
 
 	
 

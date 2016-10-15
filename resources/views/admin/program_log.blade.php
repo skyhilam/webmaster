@@ -23,6 +23,7 @@
 
 
 ## 工作記錄 
+* update setting info, edit (2016/10/15)
 * Admin ui design (2016/10/5)
 	* post, post types, home, messages, members, setting, analytics
 * Add tabs table > p css (2016/10/5)
@@ -30,6 +31,7 @@
 * remove setting profile icon at setting page (2016/10/5)
 * Can't display their self at members page  (2016/10/6)
 * develop messages page about send message to other user. (2016/10/7)
+* develop navication config (2016/10/14)
 @endmarkdown
 
     

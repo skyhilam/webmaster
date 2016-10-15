@@ -136,3 +136,46 @@ Breadcrumbs::register('messages/info', function($breadcrumbs, $subject)
 	$breadcrumbs->parent('messages');
 	$breadcrumbs->push($subject);
 });
+
+
+
+// Navigations
+Breadcrumbs::register('navigations', function($breadcrumbs)
+{
+	$breadcrumbs->push(trans('layout.navigations'), url('/navigations'));
+});
+
+// Navigations > create
+Breadcrumbs::register('navigations/create', function($breadcrumbs)
+{
+	$breadcrumbs->parent('navigations');
+	$breadcrumbs->push(trans('layout.create'));
+});
+
+// Navigations > info
+Breadcrumbs::register('navigations/info', function($breadcrumbs, $item)
+{
+	$breadcrumbs->parent('navigations');
+	$breadcrumbs->push(trans('layout.'.$item->title), url('/navigations/info/'. $item->id));
+});
+
+// Navigations > edit
+Breadcrumbs::register('navigations/edit', function($breadcrumbs, $item)
+{
+	$breadcrumbs->parent('navigations/info', $item);
+	$breadcrumbs->push(trans('layout.'. request()->param));
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+

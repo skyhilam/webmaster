@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Foundation\Validator;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
 
 
 class SettingController extends Controller
 {
+	use Validator;
 
 	protected $user;
 
@@ -17,43 +19,37 @@ class SettingController extends Controller
 		$this->user = $user;
 	}
 
-	public function showSetting()
+	public function showInfo()
 	{
-		$user = $this->user->getUser();
+		$user = $this->user->get();
 
-		return view('admin.setting.index', compact('user'));
+		return view('admin.setting.info', compact('user'));
 	}
 
 	public function showEditForm($param)
 	{
-		$user = $this->user->getUser();
+		$user = $this->user->get();
 		return view('admin.setting.edit', compact('user', 'param'));
 	}
 
-	public function edit($param, Request $request)
+	public function submitEditForm($param, Request $request)
 	{
-		$this->validate($request, $this->getRules($param));
-		$data = $this->getDataByParam($param, $request->all());
+		$this->validator($request->all(), $param)->validate();
+
+		$data = $param == 'password'? [$param => bcrypt($request->$param)] : $request->only($param);
 		$this->user->update($data);
+
 		return redirect('/setting')->with('status', trans('setting.'. $param));
 	}
 
-	protected function getRules($param)
+
+	protected function rules()
 	{
-		if ($param == 'password') {
-			return ['password' => 'required|min:6|confirmed'];
-		}else {
-			return ['name' => 'required'];
-		}
+		return $collection = collect([
+			'password' => 'required|min:6|confirmed',
+			'name' => 'required|max:250',
+        ]);
 	}
 
-	protected function getDataByParam($param, array $data)
-	{
-		if ($param == 'password') {
-			return ['password' => bcrypt($data['password'])];
-		}else {
-			return ['name' => $data['name']];
-		}
-	}
-
+	
 }

@@ -27,6 +27,6 @@ class Repository
 		return $this->model->findOrFail($id);
 	}
 
-
+	
 	
 }

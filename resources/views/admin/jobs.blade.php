@@ -22,9 +22,13 @@
 **不要心急賺錢，先規劃後實現！**
 
 ## 項目開發
-* develop search bar
-* develop newsletter
-* 統一 info, edit, create form format.
+1. create package (2016/10/14)
+* post package
+* messages package
+* members package
+2. develop search bar
+3. develop newsletter
+4. 統一 info, edit, create form format.
 @endmarkdown
 
     

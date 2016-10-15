@@ -3778,4 +3778,7 @@ table p {
   background-color: #f2f2f2;
   padding: 0.625rem; }
 
+select {
+  background-color: inherit; }
+
 /*# sourceMappingURL=app.css.map */
