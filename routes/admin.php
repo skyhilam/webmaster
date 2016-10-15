@@ -62,30 +62,37 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['admin', 'auth']], functi
 		Route::get('/', 'Pages\HomeController@index');
 	});
 
-	
-
-	
-
-	Route::get('/roles', 'RoleController@get');
-
-	Route::get('/members', 'MemberController@index');
-	Route::get('/member/create', 'MemberController@showCreateForm');
-	Route::post('/member/create', 'MemberController@createMember');
-
-	Route::get('/member/info/{id}', 'MemberController@showInfo');
-
-	Route::group(['prefix' => '/member/edit'], function() {
-
-		
-
-		Route::get('/{param}/{id}', 'MemberController@showEditForm');
-		Route::patch('/{param}/{id}', 'MemberController@edit');
-
-		// Route::put('/member/edit/{id}', 'MemberController@changeInfo');
-		// Route::patch('/member/edit/{id}', 'MemberController@changePassword');
+	Route::group(['prefix' => '/about'], function() {
+		Route::get('/', 'Pages\AboutController@index');
 	});
 
-	Route::delete('/member/delete/{id}', 'MemberController@delete');
+	Route::group(['prefix' => '/contact'], function() {
+		Route::get('/', 'Pages\ContactController@index');
+	});
+	
+
+	
+
+	
+
+
+	Route::group(['prefix' => '/members'], function() {
+		Route::get('/', 'MemberController@index');
+
+		Route::get('/create', 'MemberController@showCreateForm');
+		Route::post('/create', 'MemberController@submitCreateForm');
+
+		Route::get('/info/{id}', 'MemberController@showInfo');
+		Route::delete('/info/{id}', 'MemberController@delete');
+
+		Route::get('/edit/{id}/{param}', 'MemberController@showEditForm');
+		Route::patch('/edit/{id}/{param}', 'MemberController@submitEditForm');
+		
+	});
+
+
+	
+
 
 	
 

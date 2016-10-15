@@ -1,18 +1,20 @@
 <?php 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Repositories\MemberRepository;
-use App\Repositories\RoleRepository;
-use App\Foundation\Member\CreateAndEditMember;
-use Validator;
-use App\Models\User;
 use Auth;
+use App\Models\User;
+use Illuminate\Http\Request;
+use App\Foundation\Validator;
+use App\Http\Controllers\Controller;
+use App\Repositories\RoleRepository;
+use App\Repositories\MemberRepository;
+use App\Foundation\Member\CreateAndEditMember;
 
 class MemberController extends Controller
 {
-	use CreateAndEditMember;
+    use Validator;
+
+
 
 	protected $members, $roles;
 
@@ -39,10 +41,11 @@ class MemberController extends Controller
         return view('admin.member.create', compact('roles'));
     }
 
-    public function createMember(Request $request)
+    public function submitCreateForm(Request $request)
     {
+
         $this->validator($request->all())->validate();
-        $this->create($request->all());
+        $this->members->create($request->all());
         return redirect('/members')->with('status', trans('member.created'));
     }
 
@@ -54,7 +57,7 @@ class MemberController extends Controller
     }
 
 
-    public function showEditForm($param, $id)
+    public function showEditForm($id, $param)
     {
         $user = $this->members->getByPublicId($id);
         $roles = $this->roles->all();
@@ -62,86 +65,42 @@ class MemberController extends Controller
     }
 
 
-    public function edit(Request $request, $param, $id) 
+    public function submitEditForm(Request $request, $id, $param) 
     {
-        $rules = $this->getRules($param);
-        $this->validate($request, $rules);
+        $this->validator($request->all(), $param)->validate();
 
-        $data = $this->formatUpdateData($param, $request->all());
+        if ($param == 'role') {
+            $data = ['role_id' => $request->role];
+        }else {
+            $data = $param == 'password'? [$param => bcrypt($request->$param)] : $request->only($param);
+        }
+
 
         $this->members->updateByPublicId($id, $data);
 
-        return redirect('/member/info/'. $id)->with('status', trans('setting.'.$param));
+        return redirect('/members/info/'. $id)->with('status', trans('setting.'.$param));
     }
 
 
-    protected function formatUpdateData($param, array $data)
+    protected function rules()
     {
-        $value = $data[$param];
-        if ($param == 'password') {
-            return [ 'password' => bcrypt($value) ];
-        }elseif($param == 'role'){
-            return [ 'role_id' => $value ];
-        }else {
-            return [ $param => $value ];
-        }
-    }
-
-
-    protected function getRules($param)
-    {
-        switch ($param) {
-            case 'name':
-                return ['name' => 'required|max:255'];
-                break;
-            case 'password':
-                return [
-                    'password' => 'required|min:6|confirmed',
-                ];
-                break;
-            case 'role':
-                return [
-                    'role' => 'required|exists:roles,id',
-                ];
-                break;
-            default:
-                return [
-                    'name' => 'required|max:255',
-                    'email' => 'required|email|max:255|unique:users',
-                    'role' => 'required|exists:roles,id',
-                    'password' => 'required|min:6|confirmed',
-                ];
-                break;
-        }
-    }
-
-	/**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data, $mode = '')
-    {
-        return Validator::make($data, $this->rules($mode));
-    }
-
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'public_id' => str_random(8),
-            'email' => $data['email'],
-            'role_id' => $data['role'],
-            'password' => bcrypt($data['password']),
+        return $collection = collect([
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'role' => 'required|exists:roles,id',
+            'password' => 'required|min:6|confirmed',
         ]);
     }
+
+    
+    public function delete($id)
+    {
+        $user = $this->members->getByPublicId($id);
+        $user->delete();
+        return redirect('/members')->with('status', trans('member.deleted'));
+    }
+
+
 
 
     

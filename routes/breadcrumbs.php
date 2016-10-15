@@ -9,24 +9,24 @@ Breadcrumbs::register('members', function($breadcrumbs)
 });
 
 // Members > create
-Breadcrumbs::register('member/create', function($breadcrumbs)
+Breadcrumbs::register('members/create', function($breadcrumbs)
 {
 	$breadcrumbs->parent('members');
     $breadcrumbs->push(trans('layout.create_member'));
 });
 
 // Members > info
-Breadcrumbs::register('member/info', function($breadcrumbs, $user)
+Breadcrumbs::register('members/info', function($breadcrumbs, $user)
 {
 	$breadcrumbs->parent('members');
-    $breadcrumbs->push($user->name, url('/member/info/'. $user->public_id));
+    $breadcrumbs->push($user->name, url('/members/info/'. $user->public_id));
 });
 
 
 // Members > edit
-Breadcrumbs::register('member/edit', function($breadcrumbs, $user)
+Breadcrumbs::register('members/edit', function($breadcrumbs, $user)
 {
-	$breadcrumbs->parent('member/info', $user);
+	$breadcrumbs->parent('members/info', $user);
     $breadcrumbs->push(trans('layout.'. request()->param));
 });
 

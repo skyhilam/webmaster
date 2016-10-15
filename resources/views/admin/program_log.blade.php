@@ -32,6 +32,8 @@
 * Can't display their self at members page  (2016/10/6)
 * develop messages page about send message to other user. (2016/10/7)
 * develop navication config (2016/10/14)
+* update messages (2016/10/15)
+* update members (2016/10/15)
 @endmarkdown
 
     

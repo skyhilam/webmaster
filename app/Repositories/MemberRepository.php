@@ -51,5 +51,16 @@ class MemberRepository extends Repository
 	{
 		return $this->model->wherePublicId($id)->update($data);
 	}
+
+	public function create(array $data)
+    {
+        return $this->model->create([
+            'name' => $data['name'],
+            'public_id' => str_random(8),
+            'email' => $data['email'],
+            'role_id' => $data['role'],
+            'password' => bcrypt($data['password']),
+        ]);
+    }
 	
 }

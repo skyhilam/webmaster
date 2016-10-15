@@ -3,7 +3,7 @@ return
 [
 	[
 		[
-			'url' => '/dashboard', 
+			'url' => '/', 
 			'icon' => 'icon-page', 
 			'title' => 'layout.dashboard', 
 			'trans' => true,
