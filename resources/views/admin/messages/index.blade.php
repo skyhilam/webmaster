@@ -1,57 +1,38 @@
-@extends('layouts.admin')
+@extends('layouts.admin.index_form', ['breadcrumb' => 'messages', 'row' => true])
 
 
-@section('content')
+@section('form')
 
-<div class="row">
-	<div class="columns">
-		
-		<div class="console-section">
-			
-			<div class="row">
-				<div class="columns">
-					{!! Breadcrumbs::render('messages') !!}
-				</div>
-			</div>
 
-			@if (session('status'))
-			<div class="row">
-				<div class="columns">
-				    <div class="success callout">
-				        {{ session('status') }}
-				    </div>
-				</div>
-			</div>
-			@endif
+<table class="box">
+	<thead>
+		<tr>
+			<th width="200"><p>{{trans('layout.email')}}</p></th>
+			<th ><p>{{trans('layout.subject')}}</p></th>
+			<th width="80"><p class="text-center">{{trans('layout.read')}}</p></th>
+		</tr>
+	</thead>
 
-			<div class="row medium-up-5">
-				<div class="column">
-					<a href="{{url('/messages/compose')}}" class="body-color">
-						<div class="box board text">
-							{{trans('layout.compose')}}
-						</div>
-					</a>
-				</div>
-				
-				@foreach($inbox as $item)
-				<?php $message = $item->message;?>
-				<div class="column">
-					<a href="{{url('/messages/info/'. $message->id)}}" class="body-color">
-						<div class="box board text">
-							{{str_limit($message->subject, 20)}} <br>
-							{{trans('layout.from')}}: {{$message->name}}
-						</div>
-					</a>
-				</div>
-				@endforeach
-			</div>
+	<tbody>
+		@if(count($inbox) > 0)
+		@foreach($inbox as $item)
+		<tr>
+			<td><p>{{str_limit($item->message->email, 15)}}</p></td>
+			<td><a href="{{url('/messages/info/'. $item->id)}}"><p>{{str_limit($item->message->content, 80)}}</p></a></td>
+			<td><p class="text-center"><input type="checkbox" disabled="true" {{$item->seen?'checked':''}} style="margin-bottom: 0"></p></td>
+		</tr>
+		@endforeach
+		@else
+		<tr>
+			<td colspan="3"><p>Nothing...</p></td>
+		</tr>
+		@endif
+	</tbody>
+</table>
 
-		</div>
-
-	</div>
+<div class="text-center">
+	{{$inbox->links()}}
 </div>
-
-
 
 
 

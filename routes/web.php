@@ -12,9 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('web.pages.home');
+	return view('web.pages.home');
 });
 
-	
+Route::get('/about', function() {
+	return view('web.pages.about');
+});
+
+Route::get('/contact', 'Web\ContactController@index');
+
+Route::post('/contact', 'Web\ContactController@send');
+
 
 

@@ -29,11 +29,11 @@ class UserRepository extends Repository
 		$this->user()->update($data);
 	}
 
-	public function getInbox($n = 12)
+	public function inbox($n = 12)
 	{
 		return $this->get()
 			->indox()
-			->oldest('seen')
+			->latest()
 			->paginate($n);
 	}
 

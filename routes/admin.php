@@ -20,7 +20,7 @@ Route::group(['namespace' => 'Auth', 'middleware' => 'guest'], function() {
 
 // for all
 Route::group(['middleware' => ['auth']], function() {
-	Route::get('/dashboard', 'Admin\DashboardController@index');
+	Route::get('/', 'Admin\DashboardController@index');
 	
 	Route::get('/logout', 'Auth\LoginController@logout');
 
@@ -32,7 +32,7 @@ Route::group(['middleware' => ['auth']], function() {
 		Route::patch('{param}', 'SettingController@submitEditForm');
 	});
 
-	Route::group(['prefix' => '/messages'], function() {
+	Route::group(['prefix' => '/messages', 'namespace' => 'Admin'], function() {
 		Route::get('/', 'MessageController@index');
 		Route::get('/compose', 'MessageController@showCreateForm');
 		Route::post('/compose', 'MessageController@send');
@@ -45,26 +45,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 // for admin and redac
 Route::group(['namespace' => 'Admin', 'middleware' => ['auth', 'redac']], function() {
-	// posts
-	Route::get('/posts', 'PostController@get');
-	Route::get('/post/create', 'PostController@showCreateForm');
-	Route::post('/post/create', 'PostController@create');
-	Route::get('/post/info/{id}', 'PostController@showInfo');
-	Route::delete('/post/info/{id}', 'PostController@delete');
-
-	Route::get('/post/edit/{id}/{param}', 'PostController@showEditForm');
-	Route::patch('/post/edit/{id}/{param}', 'PostController@edit');
-
-	// post types
-	Route::group(['prefix' => '/postTypes'], function() {
-		Route::get('/', 'TypesController@index');
-		Route::get('/info/{id}', 'TypesController@showInfo');
-		Route::delete('/info/{id}', 'TypesController@delete');
-		Route::get('/create', 'TypesController@showCreateForm');
-		Route::post('/create', 'TypesController@create');
-		Route::get('/edit/{id}/{param}', 'TypesController@showEditForm');
-		Route::patch('/edit/{id}/{param}', 'TypesController@edit');
-	});
+	
 
 	// analytics
 	Route::get('/analytics', 'AnalyticsController@get');
@@ -77,14 +58,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['admin', 'auth']], functi
 
 
 
-	Route::group(['prefix'=>'/navigations'], function() {
-		Route::get('/', 'NavigationController@index');
-		Route::get('/create', 'NavigationController@showCreateForm');
-		Route::post('/create', 'NavigationController@submitCreateForm');
-		Route::get('/info/{id}', 'NavigationController@showInfo');
-		Route::delete('/info/{id}', 'NavigationController@deleteInfo');
-		Route::get('/edit/{id}/{param}', 'NavigationController@showEditForm');
-		Route::patch('/edit/{id}/{param}', 'NavigationController@submitEditForm');
+	Route::group(['prefix' => '/home'], function() {
+		Route::get('/', 'Pages\HomeController@index');
 	});
 
 	

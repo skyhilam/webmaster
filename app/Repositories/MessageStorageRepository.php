@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Message;
 use App\Models\MessageStorage;
 
 
@@ -10,9 +11,9 @@ use App\Models\MessageStorage;
 */
 class MessageStorageRepository extends Repository
 {
-	function __construct(MessageStorage $message)
+	function __construct(MessageStorage $model)
 	{
-		$this->model = $message;
+		$this->model = $model;
 	}
 
 
@@ -32,16 +33,10 @@ class MessageStorageRepository extends Repository
 			->get();
 	}
 
-	public function getByMessageId($id)
-	{
-		$user = auth()->user();
-		return $this->model->whereMessageId($id)->whereUserId($user->id)->first();
-	}
-
 
 	public function readById($id)
 	{
-		$letter = $this->getByMessageId($id);
+		$letter = $this->getById($id);
 
 		if (!$letter->seen) {
 			$letter->seen = 1;
@@ -49,12 +44,10 @@ class MessageStorageRepository extends Repository
 		}
 
 		return $letter->message;
-
-
 	}
 
 	public function delete($id)
 	{
-		$this->getByMessageId($id)->delete();
+		$this->getById($id)->delete();
 	}
 }

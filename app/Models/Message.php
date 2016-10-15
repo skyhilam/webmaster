@@ -9,7 +9,7 @@ class Message extends Model
 
 
 	protected $fillable = [
-        'from', 'name', 'subject', 'content', 'created_at'
+       'email', 'content', 'created_at'
     ];
 
     public $timestamps = false;

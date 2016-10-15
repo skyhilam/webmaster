@@ -115,7 +115,7 @@ return [
     'subject'   => '主旨',
     'cc'        => '副本',
     'date'      => '日期',
-    'read'      => '閱讀',
+    'read'      => '已讀',
 
 
     // navigation
@@ -125,6 +125,12 @@ return [
     'navigations'   => '導覽',
     'group'         => '群組',
     'permission'    => '允許',
+
+
+    // pages
+    'home'          => '主頁',
+    'about'         => '關於',
+    'contact'       => '聯絡',
 ];
 
 

@@ -29,6 +29,9 @@
 2. develop search bar
 3. develop newsletter
 4. 統一 info, edit, create form format.
+5. post change to home 
+6. update messages
+7. update members
 @endmarkdown
 
     

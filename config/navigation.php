@@ -10,16 +10,23 @@ return
 			'permission' => 1
 		],
 		[
-			'url' => '/posts', 
+			'url' => '/home', 
 			'icon' => 'icon-page', 
-			'title' => 'layout.posts', 
+			'title' => 'layout.home', 
 			'trans' => true,
 			'permission' => 2
 		],
 		[
-			'url' => '/postTypes', 
+			'url' => '/about', 
 			'icon' => 'icon-page', 
-			'title' => 'layout.post_types', 
+			'title' => 'layout.about', 
+			'trans' => true,
+			'permission' => 2
+		],
+		[
+			'url' => '/contact', 
+			'icon' => 'icon-page', 
+			'title' => 'layout.contact', 
 			'trans' => true,
 			'permission' => 2
 		],
