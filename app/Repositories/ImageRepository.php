@@ -6,7 +6,6 @@ use App\Models\Image;
 class ImageRepository extends Repository
 {
 
-	protected $path = '/img/uploads/';
 
 
 	public function __construct(Image $img)
@@ -15,58 +14,30 @@ class ImageRepository extends Repository
 	}
 
 	
-
-	/**
-	* @param array $files
-	* @return array
-	**/
-	public function uploads(array $files)
+	public function create(array $data)
 	{
-		return collect($files)->map(function ($item, $key) {
-            return $this->save($item);
-		})->all();
-	}
-
-
-
-
-
-	/**
-	* @param $file
-	* @return array()
-	**/
-	public function save($file)
-	{
-		$public_id = str_random(8);
-
-		\Cloudder::upload(
-            $file, 
-            $public_id, //public_id
-            [], //options
-            [$file->getClientOriginalName()] //tags
-        );
-
-
-		return $this->model->create([
-			'public_id' => $public_id,
-            'created_at' => \Carbon\Carbon::now(),
+		$this->model->create([
+			'public_id' 	=> str_random(20),
+			'url' 			=> $data['url'],
+			'mobile_url' 	=> $data['mobile_url'],
+			'filename' 		=> $data['filename'],
+			'path'			=> $data['path'],
 		]);
 	}
 
-
-
-
-	/**
-	* @param $image
-	* @return null
-	**/
-	public function delete($public_id)
+	public function indexs($n)
 	{
-		\Cloudder::destroyImage($public_id);
-		$this->model->wherePublicId($public_id)->delete();
+		return $this->model->paginate($n);
 	}
 
-
+	public function delete($id)
+	{
+		$image = $this->model->wherePublicId($id)->first();
+		$filename = $image->filename;
+		$path = $image->path??public_path("uploads");
+		\File::delete("$path/$filename", "$path/mobile{$filename}");
+		$image->delete();
+	}
 
 
 }

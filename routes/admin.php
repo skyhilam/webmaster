@@ -60,6 +60,8 @@ Route::group(['namespace' => 'Admin', 'middleware' => ['admin', 'auth']], functi
 
 	Route::group(['prefix' => '/home'], function() {
 		Route::get('/', 'Pages\HomeController@index');
+		Route::post('/', 'Pages\HomeController@uploadImage');
+		Route::delete('/delete/{id}', 'Pages\HomeController@deleteItem');
 	});
 
 	Route::group(['prefix' => '/about'], function() {

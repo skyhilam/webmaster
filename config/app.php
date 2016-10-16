@@ -184,7 +184,8 @@ return [
         JD\Cloudder\CloudderServiceProvider::class,
 
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
-        
+
+        Intervention\Image\ImageServiceProvider::class
     ],
 
     /*
@@ -238,7 +239,7 @@ return [
         'Markdown' => Indal\Markdown\Facade::class,
 
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 

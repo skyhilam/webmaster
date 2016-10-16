@@ -16,7 +16,11 @@ class CreateImagesTable extends Migration
         Schema::create('images', function(Blueprint $table) {
             $table->increments('id');
             $table->string('public_id', 20);
-            $table->timestamp('created_at')->nullable();
+            $table->string('url');
+            $table->string('mobile_url');
+            $table->string('filename');
+            $table->string('path');
+
         });
     }
 

@@ -7,12 +7,13 @@
 	<div class="columns">
 		<div class="console-section">
 		
-			
+			@if(isset($breadcrumb))
 			<div class="row">
 				<div class="columns">
 					{!! Breadcrumbs::render($breadcrumb) !!}
 				</div>
 			</div>
+			@endif
 
 			<div class="row">
 				<div class="columns">

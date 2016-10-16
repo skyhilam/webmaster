@@ -15,17 +15,10 @@ class Image extends Model
      * @var array
      */
     protected $fillable = [
-        'public_id', 'created_at'
+        'public_id', 'url', 'mobile_url', 'filename', 'path'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-
-    ];
+   
 
     public $timestamps = false; 
 
