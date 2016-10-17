@@ -181,8 +181,6 @@ return [
         App\Providers\RouteServiceProvider::class,
 
 
-        JD\Cloudder\CloudderServiceProvider::class,
-
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class
