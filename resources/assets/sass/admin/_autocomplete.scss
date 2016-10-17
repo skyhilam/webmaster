@@ -1,0 +1,35 @@
+.easy-autocomplete
+{
+	position: relative;
+
+	ul {
+		list-style: none;
+		background-color: $white;
+		margin: 0;
+		
+	}
+	
+
+}
+
+.easy-autocomplete-container {
+	left: 0;
+	position: absolute;
+	width: 100%;
+	z-index: 2;
+}
+
+.eac-item {
+	font-size: rem-calc(14);
+	padding: 10px;
+	b {
+		color: $primary-color;
+	}
+	&:hover, .selected & {
+		background-color: $primary-color;
+		&, & b {
+			color: $white;
+		}
+
+	}
+}
