@@ -3,7 +3,6 @@
 
 @section('form')
 
-
 <form action="{{request()->url()}}" method="post" enctype="multipart/form-data">
 	{{csrf_field()}}
 	<input type="file" accept="image/png,image/jpeg,image/jpg" name="image">

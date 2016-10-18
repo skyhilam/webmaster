@@ -5,22 +5,39 @@ namespace App\Http\Controllers\Admin\Pages;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\ImageRepository;
+use Approached\LaravelImageOptimizer\ImageOptimizer;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use League\Glide\ServerFactory;
+use League\Glide\Responses\LaravelResponseFactory;
 
 /**
 * Pages Home Controller
 */
 class HomeController extends Controller
 {
-	protected $image;
 
-	public function __construct(ImageRepository $image)
+	protected $image;
+	protected $imageOptimizer;
+
+
+	public function __construct(ImageRepository $image, ImageOptimizer $imageOptimizer)
 	{
 		$this->image = $image;
+		$this->imageOptimizer = $imageOptimizer;
 	}
 
 	
 
+	public function test() 
+	{
+		$server = ServerFactory::create([
+			'source' => public_path('img/uploads'),
+			'cache' => public_path('img/cache'),
+		    'response' => new LaravelResponseFactory()
+		]);
+
+		return $server->outputImage('DSC_5667.jpg', ['w' => 300, 'h' => 400]);
+	}
 	
 	public function index()
 	{
@@ -36,21 +53,18 @@ class HomeController extends Controller
 
 	}
 
+
+
 	protected function saveImage(UploadedFile $image)
 	{
 		$filename = $image->getClientOriginalName();
-		$path = public_path("uploads/$filename");
+		$path = public_path("img/uploads/$filename");
 
 
 		$img = \Image::make($image);
-		$img->save($path);
-
-		// mobile
-		list($width, $height) = getimagesize($image);
-		if ($width > 414) {
-			$img->widen(414)
-				->save(public_path("uploads/mobile{$filename}"));
-		}
+		$img->widen(1024)->save($path, 100);
+		
+		$this->imageOptimizer->optimizeImage($path);
 
 		$this->image->create([
 			'url' 			=> asset("uploads/$filename"), 

@@ -183,7 +183,8 @@ return [
 
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
 
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        Approached\LaravelImageOptimizer\ServiceProvider::class,
     ],
 
     /*
@@ -238,6 +239,7 @@ return [
 
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
         'Image' => Intervention\Image\Facades\Image::class,
+
 
     ],
 

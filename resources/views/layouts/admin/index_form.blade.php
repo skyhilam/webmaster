@@ -10,7 +10,11 @@
 			@if(isset($breadcrumb))
 			<div class="row">
 				<div class="columns">
+					@if(empty($item))
 					{!! Breadcrumbs::render($breadcrumb) !!}
+					@else
+					{!! Breadcrumbs::render($breadcrumb, $item) !!}
+					@endif
 				</div>
 			</div>
 			@endif

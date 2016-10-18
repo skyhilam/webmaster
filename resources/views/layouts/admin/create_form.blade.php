@@ -6,8 +6,13 @@
 
 
 @push('console_content')
+
+@if(empty($item))
 {!! Breadcrumbs::render($breadcrumb) !!}
-<form action="{{request()->url()}}" method="post" enctype="multipart/form-data">
+@else
+{!! Breadcrumbs::render($breadcrumb, $item) !!}
+@endif
+<form action="{{request()->url()}}" method="post" enctype="multipart/form-data" id="{{$id??''}}">
 
 	
 

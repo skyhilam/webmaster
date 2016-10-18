@@ -41,7 +41,7 @@
 			@if(empty($logout))
 			<div class="row">
 				<div class="columns">
-					<form  method="post" action="{{request()->url()}}" class="text-center">
+					<form  method="post" action="{{request()->url()}}" class="{{$button?? 'text-center'}}">
 						{{csrf_field()}}
 						<input type="hidden" name="_method" value="delete">
 
@@ -51,7 +51,7 @@
 				</div>
 			</div>
 			@else
-			<div class="text-center">
+			<div class="{{$button?? 'text-center'}}">
 				<a class="button box" href="{{url('/logout')}}">{{trans('layout.logout')}}</a>
 			</div>
 			@endif
